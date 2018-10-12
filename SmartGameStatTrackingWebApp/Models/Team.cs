@@ -10,6 +10,8 @@ namespace SmartGameStatTrackingWebApp.Models
     public class ApplicationContext : DbContext
     {
         public DbSet<Team> Teams { get; set; }
+
+        public System.Data.Entity.DbSet<SmartGameStatTrackingWebApp.Models.Player> Players { get; set; }
     }
 
     public class Team

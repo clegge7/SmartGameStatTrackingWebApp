@@ -7,11 +7,6 @@ using System.Web;
 
 namespace SmartGameStatTrackingWebApp.Models
 {
-    /*public class ApplicationContext : DbContext
-    {
-        public DbSet<Player> Players { get; set; }
-    }*/
-
     public class Player
     {
         public int id { get; set; }
