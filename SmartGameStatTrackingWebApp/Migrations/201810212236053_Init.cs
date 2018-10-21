@@ -3,7 +3,7 @@ namespace SmartGameStatTrackingWebApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init_player_and_team : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
@@ -11,13 +11,13 @@ namespace SmartGameStatTrackingWebApp.Migrations
                 "dbo.Teams",
                 c => new
                     {
-                        id = c.Int(nullable: false, identity: true),
-                        name = c.String(),
+                        ID = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
                         wins = c.Int(nullable: false),
                         losses = c.Int(nullable: false),
                         season = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.id);
+                .PrimaryKey(t => t.ID);
             
             CreateTable(
                 "dbo.Players",
@@ -37,18 +37,18 @@ namespace SmartGameStatTrackingWebApp.Migrations
                         personalFouls = c.Int(nullable: false),
                         technicalFouls = c.Int(nullable: false),
                         season = c.Int(nullable: false),
-                        Team_id = c.Int(),
+                        Team_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.Teams", t => t.Team_id)
-                .Index(t => t.Team_id);
+                .ForeignKey("dbo.Teams", t => t.Team_ID)
+                .Index(t => t.Team_ID);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Players", "Team_id", "dbo.Teams");
-            DropIndex("dbo.Players", new[] { "Team_id" });
+            DropForeignKey("dbo.Players", "Team_ID", "dbo.Teams");
+            DropIndex("dbo.Players", new[] { "Team_ID" });
             DropTable("dbo.Players");
             DropTable("dbo.Teams");
         }

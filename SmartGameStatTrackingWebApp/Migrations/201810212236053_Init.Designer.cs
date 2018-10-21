@@ -7,13 +7,13 @@ namespace SmartGameStatTrackingWebApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class init_player_and_team : IMigrationMetadata
+    public sealed partial class Init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(init_player_and_team));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201810091435452_init_player_and_team"; }
+            get { return "201810212236053_Init"; }
         }
         
         string IMigrationMetadata.Source

@@ -12,7 +12,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
 {
     public class TeamsController : Controller
     {
-        private ApplicationContext db = new ApplicationContext();
+        private SportsTrackDBContext db = new SportsTrackDBContext();
 
         // GET: Teams
         public ActionResult Index()
@@ -46,7 +46,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,name,wins,losses,season")] Team team)
+        public ActionResult Create([Bind(Include = "ID,Name,wins,losses,season")] Team team)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,name,wins,losses,season")] Team team)
+        public ActionResult Edit([Bind(Include = "ID,Name,wins,losses,season")] Team team)
         {
             if (ModelState.IsValid)
             {
