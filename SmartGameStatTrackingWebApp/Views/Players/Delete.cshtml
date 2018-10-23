@@ -1,0 +1,128 @@
+﻿@model SmartGameStatTrackingWebApp.Models.Player
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Player</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.team)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.team)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gamesPlayed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gamesPlayed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.points)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.points)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rebounds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rebounds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.assists)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.assists)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.blocks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.blocks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.steals)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.steals)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.turnovers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.turnovers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personalFouls)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personalFouls)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.technicalFouls)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.technicalFouls)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.season)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.season)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

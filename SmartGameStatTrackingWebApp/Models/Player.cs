@@ -19,6 +19,7 @@ namespace SmartGameStatTrackingWebApp.Models
 
         public int gamesPlayed { get; set; }
 
+        [Display(Name = "PPG")]
         public int points { get; set; }
 
         public int rebounds { get; set; }
