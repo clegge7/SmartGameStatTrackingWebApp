@@ -1,6 +1,7 @@
 ﻿table {
     border: solid;
     border-color: darkslategray;
+    border-width: 2px;
 }
 
 .head {
@@ -8,12 +9,14 @@
     color: white;
     border-color: darkslategray;
     border-bottom: none;
+    border-width: 2px;
 }
 
 tr {
     border-left: solid;
     border-right: solid;
     border-color: darkslategray;
+    border-width: 2px;
 }
 
 tr:nth-child(2n){

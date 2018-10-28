@@ -3,6 +3,23 @@
 @{
     ViewBag.Title = "Details";
 }
+<script type="text/javascript" src="~/Content/js/plugins/jquery/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+    var teamName = @Html.Raw(Json.Encode(Model.Name));
+    $.ajax({
+        type: 'POST',
+        url: '/Players/GetTeamPlayers',
+        datatype: 'json',
+        data: {
+            teamName: teamName
+        },
+        success: function (data) {
+            console.log(data);
+            alert(data);
+        }
+    })
+</script>
 
 <h2>Details</h2>
 
@@ -40,6 +57,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.season)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Players)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Players)
         </dd>
 
     </dl>

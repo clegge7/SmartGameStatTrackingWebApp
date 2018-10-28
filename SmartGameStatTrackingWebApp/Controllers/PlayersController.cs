@@ -115,6 +115,16 @@ namespace SmartGameStatTrackingWebApp.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public ActionResult GetTeamPlayers(string teamName)
+        {
+            var playersOnTeam = from players in db.Players
+                                where players.team == teamName
+                                select players;
+
+            return Json(playersOnTeam);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
