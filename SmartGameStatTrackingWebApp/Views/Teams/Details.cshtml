@@ -4,6 +4,7 @@
     ViewBag.Title = "Details";
 }
 <script type="text/javascript" src="~/Content/js/plugins/jquery/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="~/Content/css/table.css" />
 
 <script type="text/javascript">
     var teamName = @Html.Raw(Json.Encode(Model.Name));
@@ -16,7 +17,17 @@
         },
         success: function (data) {
             console.log(data);
-            alert(data);
+            var i;
+            for (i = 0; i < data.length; i++) {
+                console.log(data[i]);
+                $('.TeamPlayers tr:last').after('<tr><th>' + data[i].number + '<th>' + data[i].name + '</th>' +
+                    '<th>' + data[i].team + '</th>' + '<th>' + data[i].gamesPlayed + '</th>' +
+                    '<th>' + (data[i].points / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].rebounds / data[i].gamesPlayed).toFixed(1) + '</th>' +
+                    '<th>' + (data[i].assists / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].blocks / data[i].gamesPlayed).toFixed(1) + '</th>' +
+                    '<th>' + (data[i].steals / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].turnovers / data[i].gamesPlayed).toFixed(1) + '</th>' +
+                    '<th>' + (data[i].personalFouls / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].technicalFouls / data[i].gamesPlayed).toFixed(1) +
+                    '</th><th>' + data[i].season + '</th></tr>');
+            }
         }
     })
 </script>
@@ -69,6 +80,49 @@
 
     </dl>
 </div>
+<table class="TeamPlayers table">
+    <tr class="head">
+        <th>
+            Number
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Team
+        </th>
+        <th>
+            GP
+        </th>
+        <th>
+            PPG
+        </th>
+        <th>
+            RPG
+        </th>
+        <th>
+            APG
+        </th>
+        <th>
+            BPG
+        </th>
+        <th>
+            SPG
+        </th>
+        <th>
+            TOPG
+        </th>
+        <th>
+            PFPG
+        </th>
+        <th>
+            TFPG
+        </th>
+        <th>
+            Season
+        </th>
+    </tr>
+</table>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
