@@ -1,7 +1,7 @@
 ﻿@model SmartGameStatTrackingWebApp.Models.Team
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Team Details";
 }
 <script type="text/javascript" src="~/Content/js/plugins/jquery/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="~/Content/css/table.css" />
@@ -32,19 +32,10 @@
     })
 </script>
 
-<h2>Details</h2>
-
 <div>
-    <h4>Team</h4>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.wins)
@@ -70,17 +61,9 @@
             @Html.DisplayFor(model => model.season)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Players)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Players)
-        </dd>
-
     </dl>
 </div>
-<table class="TeamPlayers table">
+<table class="TeamPlayers table table-responsive">
     <tr class="head">
         <th>
             Number
