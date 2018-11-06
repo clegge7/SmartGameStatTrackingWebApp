@@ -173,6 +173,10 @@
     <Compile Include="Migrations\201810212236053_Init.Designer.cs">
       <DependentUpon>201810212236053_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811061416281_Player_disp.cs" />
+    <Compile Include="Migrations\201811061416281_Player_disp.Designer.cs">
+      <DependentUpon>201811061416281_Player_disp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\SportsTrackDBContext.cs" />
@@ -316,6 +320,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201810212236053_Init.resx">
       <DependentUpon>201810212236053_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811061416281_Player_disp.resx">
+      <DependentUpon>201811061416281_Player_disp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

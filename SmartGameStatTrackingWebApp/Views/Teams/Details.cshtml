@@ -1,7 +1,7 @@
 ﻿@model SmartGameStatTrackingWebApp.Models.Team
 
 @{
-    ViewBag.Title = "Team Details";
+    ViewBag.Title = Model.Name;
 }
 <script type="text/javascript" src="~/Content/js/plugins/jquery/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="~/Content/css/table.css" />
@@ -20,7 +20,7 @@
             var i;
             for (i = 0; i < data.length; i++) {
                 console.log(data[i]);
-                $('.TeamPlayers tr:last').after('<tr><th>' + data[i].number + '<th>' + data[i].name + '</th>' +
+                $('.TeamPlayers tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].id + '\">' + data[i].name + '</a></th>' +
                     '<th>' + data[i].team + '</th>' + '<th>' + data[i].gamesPlayed + '</th>' +
                     '<th>' + (data[i].points / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].rebounds / data[i].gamesPlayed).toFixed(1) + '</th>' +
                     '<th>' + (data[i].assists / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].blocks / data[i].gamesPlayed).toFixed(1) + '</th>' +
@@ -33,8 +33,6 @@
 </script>
 
 <div>
-    <h4>@Html.DisplayFor(model => model.Name)</h4>
-    <hr />
     <dl class="dl-horizontal">
 
         <dt>
@@ -61,52 +59,56 @@
             @Html.DisplayFor(model => model.season)
         </dd>
 
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+
     </dl>
 </div>
-<table class="TeamPlayers table table-responsive">
-    <tr class="head">
-        <th>
-            Number
-        </th>
-        <th>
-            Name
-        </th>
-        <th>
-            Team
-        </th>
-        <th>
-            GP
-        </th>
-        <th>
-            PPG
-        </th>
-        <th>
-            RPG
-        </th>
-        <th>
-            APG
-        </th>
-        <th>
-            BPG
-        </th>
-        <th>
-            SPG
-        </th>
-        <th>
-            TOPG
-        </th>
-        <th>
-            PFPG
-        </th>
-        <th>
-            TFPG
-        </th>
-        <th>
-            Season
-        </th>
-    </tr>
-</table>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div style="overflow-x:scroll;">
+    <table class="TeamPlayers table table-responsive">
+        <tr class="head">
+            <th>
+                Number
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Team
+            </th>
+            <th>
+                GP
+            </th>
+            <th>
+                PPG
+            </th>
+            <th>
+                RPG
+            </th>
+            <th>
+                APG
+            </th>
+            <th>
+                BPG
+            </th>
+            <th>
+                SPG
+            </th>
+            <th>
+                TOPG
+            </th>
+            <th>
+                PFPG
+            </th>
+            <th>
+                TFPG
+            </th>
+            <th>
+                Season
+            </th>
+        </tr>
+    </table>
+</div>
+

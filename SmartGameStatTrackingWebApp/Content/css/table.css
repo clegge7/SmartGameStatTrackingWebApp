@@ -1,4 +1,5 @@
 ﻿table {
+    display: table-cell;
     border: solid;
     border-color: darkslategray;
     border-width: 2px;
