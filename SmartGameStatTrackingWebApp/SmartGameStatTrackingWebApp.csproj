@@ -145,6 +145,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\table.css" />
+    <Content Include="Content\js\lighttablefilter.js" />
+    <Content Include="Content\js\sortable.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -159,6 +161,10 @@
     <Content Include="Views\Players\Details.cshtml" />
     <Content Include="Views\Players\Edit.cshtml" />
     <Content Include="Views\Players\Index.cshtml" />
+    <Content Include="package.json" />
+    <None Include=".bin\git.cmd" />
+    <None Include=".bin\node.cmd" />
+    <None Include=".bin\npm.cmd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

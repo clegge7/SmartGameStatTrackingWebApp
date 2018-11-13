@@ -5,56 +5,65 @@
 }
 
 <link rel="stylesheet" type="text/css" href="~/Content/css/table.css" />
+<script src="~/Content/js/lighttablefilter.js"></script>
+<script src="~/Content/js/plugins/jquery/jquery-3.3.1.min.js"></script>
+<script src="~/Content/js/sortable.js"></script>
 
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<div style="overflow-x:scroll;">
-    <table class="table">
-        <tr class="head">
-            <th>
-                @Html.DisplayNameFor(model => model.number)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.team)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.gamesPlayed)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.points)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.rebounds)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.assists)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.blocks)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.steals)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.turnovers)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.personalFouls)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.technicalFouls)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.season)
-            </th>
-        </tr>
 
+<div class="filter" style="padding-bottom:10px;">
+    <input type="search" class="light-table-filter" data-table="order-table" placeholder="Search Players">
+</div>
+
+<div style="overflow-x:scroll;">
+    <table class="table order-table sortable">
+        <thead>
+            <tr class="head">
+                <th>
+                    @Html.DisplayNameFor(model => model.number)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.team)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.gamesPlayed)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.points)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.rebounds)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.assists)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.blocks)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.steals)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.turnovers)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.personalFouls)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.technicalFouls)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.season)
+                </th>
+            </tr>
+        </thead>
         @foreach (var item in Model)
         {
             <tr>
@@ -102,4 +111,3 @@
 
     </table>
 </div>
-
