@@ -165,6 +165,12 @@
     <None Include=".bin\git.cmd" />
     <None Include=".bin\node.cmd" />
     <None Include=".bin\npm.cmd" />
+    <Content Include="Views\Games\Create.cshtml" />
+    <Content Include="Views\Games\Delete.cshtml" />
+    <Content Include="Views\Games\Details.cshtml" />
+    <Content Include="Views\Games\Edit.cshtml" />
+    <Content Include="Views\Games\Index.cshtml" />
+    <Content Include="Views\Partials\_PlayerCreate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -173,6 +179,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Migrations\201810212236053_Init.cs" />
@@ -183,7 +190,12 @@
     <Compile Include="Migrations\201811061416281_Player_disp.Designer.cs">
       <DependentUpon>201811061416281_Player_disp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811191035207_Game.cs" />
+    <Compile Include="Migrations\201811191035207_Game.Designer.cs">
+      <DependentUpon>201811191035207_Game.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\SportsTrackDBContext.cs" />
     <Compile Include="Models\Team.cs" />
@@ -329,6 +341,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811061416281_Player_disp.resx">
       <DependentUpon>201811061416281_Player_disp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811191035207_Game.resx">
+      <DependentUpon>201811191035207_Game.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

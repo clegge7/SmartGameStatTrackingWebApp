@@ -1,0 +1,80 @@
+﻿@model SmartGameStatTrackingWebApp.Models.Game
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Game</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.homeTeamID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.homeTeamID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.awayTeamID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.awayTeamID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gameDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gameDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.homeTeam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.homeTeam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.awayTeam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.awayTeam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.homePoints)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.homePoints)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.awayPoints)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.awayPoints)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

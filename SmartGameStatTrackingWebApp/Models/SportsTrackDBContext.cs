@@ -21,5 +21,7 @@ namespace SmartGameStatTrackingWebApp.Models
         public System.Data.Entity.DbSet<SmartGameStatTrackingWebApp.Models.Team> Teams { get; set; }
 
         public System.Data.Entity.DbSet<SmartGameStatTrackingWebApp.Models.Player> Players { get; set; }
+
+        public System.Data.Entity.DbSet<SmartGameStatTrackingWebApp.Models.Game> Games { get; set; }
     }
 }

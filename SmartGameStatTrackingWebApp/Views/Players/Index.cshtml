@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SmartGameStatTrackingWebApp.Models.Player>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Players";
 }
 
 <link rel="stylesheet" type="text/css" href="~/Content/css/table.css" />
@@ -9,7 +9,31 @@
 <script src="~/Content/js/plugins/jquery/jquery-3.3.1.min.js"></script>
 <script src="~/Content/js/sortable.js"></script>
 
-<h2>Index</h2>
+<script type="text/javascript">
+    $.ajax({
+        type: 'POST',
+        url: '/Players/GetPlayers',
+        dataType: 'json',
+        success: function (data) {
+            var i;
+            for (i = 0; i < data.length; i++) {
+                if (data[i].gamesPlayed != 0) {
+                    $('.Players tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].id + '\">' + data[i].name + '</a></th>' +
+                        '<th>' + data[i].team + '</th>' + '<th>' + data[i].gamesPlayed + '</th>' +
+                        '<th>' + (data[i].points / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].rebounds / data[i].gamesPlayed).toFixed(1) + '</th>' +
+                        '<th>' + (data[i].assists / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].blocks / data[i].gamesPlayed).toFixed(1) + '</th>' +
+                        '<th>' + (data[i].steals / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].turnovers / data[i].gamesPlayed).toFixed(1) + '</th>' +
+                        '<th>' + (data[i].personalFouls / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].technicalFouls / data[i].gamesPlayed).toFixed(1) +
+                        '</th><th>' + data[i].season + '</th></tr>');
+                }
+                else {
+                    $('.Players tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].id + '\">' + data[i].name + '</a></th>' +
+                        '<th>' + data[i].team + '</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>' + data[i].season + '</th></tr>');
+                }
+            }
+        }
+    });
+</script>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -20,7 +44,7 @@
 </div>
 
 <div style="overflow-x:scroll;">
-    <table class="table order-table sortable">
+    <table class="Players table order-table sortable">
         <thead>
             <tr class="head">
                 <th>
@@ -64,50 +88,5 @@
                 </th>
             </tr>
         </thead>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.number)
-                </td>
-                <td>
-                    @Html.ActionLink(item.name, "Details", new { id = item.id })
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.team)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.gamesPlayed)
-                </td>
-                <td>
-                    @Html.DisplayName((item.points / item.gamesPlayed).ToString())
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.rebounds)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.assists)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.blocks)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.steals)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.turnovers)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.personalFouls)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.technicalFouls)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.season)
-                </td>
-            </tr>
-        }
-
     </table>
 </div>

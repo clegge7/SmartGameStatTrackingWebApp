@@ -1,0 +1,74 @@
+﻿@model SmartGameStatTrackingWebApp.Models.Game
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Game</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.homeTeamID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.homeTeamID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.awayTeamID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.awayTeamID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gameDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gameDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.homeTeam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.homeTeam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.awayTeam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.awayTeam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.homePoints)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.homePoints)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.awayPoints)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.awayPoints)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -10,131 +10,109 @@ using SmartGameStatTrackingWebApp.Models;
 
 namespace SmartGameStatTrackingWebApp.Controllers
 {
-    public class PlayersController : Controller
+    public class GamesController : Controller
     {
         private SportsTrackDBContext db = new SportsTrackDBContext();
 
-        // GET: Players
+        // GET: Games
         public ActionResult Index()
         {
-            return View(db.Players.ToList());
+            return View(db.Games.ToList());
         }
 
-        // GET: Players/Details/5
+        // GET: Games/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Player player = db.Players.Find(id);
-            if (player == null)
+            Game game = db.Games.Find(id);
+            if (game == null)
             {
                 return HttpNotFound();
             }
-            return View(player);
+            return View(game);
         }
 
-        // GET: Players/Create
+        // GET: Games/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Players/Create
+        // POST: Games/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,number,name,team,gamesPlayed,points,rebounds,assists,blocks,steals,turnovers,personalFouls,technicalFouls,season")] Player player)
+        public ActionResult Create([Bind(Include = "id,homeTeamID,awayTeamID,gameDate,homeTeam,awayTeam,homePoints,awayPoints")] Game game)
         {
             if (ModelState.IsValid)
             {
-                db.Players.Add(player);
+                db.Games.Add(game);
                 db.SaveChanges();
-                var teamID = (from teams in db.Teams
-                             where teams.Name == player.team
-                             select teams).FirstOrDefault().ID;
-                return RedirectToAction("Details", "Teams", new { id = teamID });
+                return RedirectToAction("Index");
             }
 
-            return View(player);
+            return View(game);
         }
 
-        // GET: Players/Edit/5
+        // GET: Games/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Player player = db.Players.Find(id);
-            if (player == null)
+            Game game = db.Games.Find(id);
+            if (game == null)
             {
                 return HttpNotFound();
             }
-            return View(player);
+            return View(game);
         }
 
-        // POST: Players/Edit/5
+        // POST: Games/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,number,name,team,gamesPlayed,points,rebounds,assists,blocks,steals,turnovers,personalFouls,technicalFouls,season")] Player player)
+        public ActionResult Edit([Bind(Include = "id,homeTeamID,awayTeamID,gameDate,homeTeam,awayTeam,homePoints,awayPoints")] Game game)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(player).State = EntityState.Modified;
+                db.Entry(game).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(player);
+            return View(game);
         }
 
-        // GET: Players/Delete/5
+        // GET: Games/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Player player = db.Players.Find(id);
-            if (player == null)
+            Game game = db.Games.Find(id);
+            if (game == null)
             {
                 return HttpNotFound();
             }
-            return View(player);
+            return View(game);
         }
 
-        // POST: Players/Delete/5
+        // POST: Games/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Player player = db.Players.Find(id);
-            db.Players.Remove(player);
+            Game game = db.Games.Find(id);
+            db.Games.Remove(game);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public ActionResult GetTeamPlayers(string teamName)
-        {
-            var playersOnTeam = from players in db.Players
-                                where players.team == teamName
-                                select players;
-
-            return Json(playersOnTeam);
-        }
-
-        [HttpPost]
-        public ActionResult GetPlayers()
-        {
-            var AllPlayers = from players in db.Players
-                             select players;
-
-            return Json(AllPlayers);
         }
 
         protected override void Dispose(bool disposing)

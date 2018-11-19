@@ -1,0 +1,63 @@
+﻿@model IEnumerable<SmartGameStatTrackingWebApp.Models.Game>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.gameDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.homeTeam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.awayTeam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.homePoints)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.awayPoints)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.homeTeamID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.awayTeamID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gameDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.homeTeam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.awayTeam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.homePoints)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.awayPoints)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

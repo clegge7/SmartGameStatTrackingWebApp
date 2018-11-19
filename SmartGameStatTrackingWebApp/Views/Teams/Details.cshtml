@@ -16,20 +16,32 @@
             teamName: teamName
         },
         success: function (data) {
-            console.log(data);
-            var i;
             for (i = 0; i < data.length; i++) {
-                console.log(data[i]);
-                $('.TeamPlayers tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].id + '\">' + data[i].name + '</a></th>' +
-                    '<th>' + data[i].team + '</th>' + '<th>' + data[i].gamesPlayed + '</th>' +
-                    '<th>' + (data[i].points / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].rebounds / data[i].gamesPlayed).toFixed(1) + '</th>' +
-                    '<th>' + (data[i].assists / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].blocks / data[i].gamesPlayed).toFixed(1) + '</th>' +
-                    '<th>' + (data[i].steals / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].turnovers / data[i].gamesPlayed).toFixed(1) + '</th>' +
-                    '<th>' + (data[i].personalFouls / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].technicalFouls / data[i].gamesPlayed).toFixed(1) +
-                    '</th><th>' + data[i].season + '</th></tr>');
+                if (data[i].gamesPlayed != 0) {
+                    $('.TeamPlayers tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].id + '\">' + data[i].name + '</a></th>' +
+                        '<th>' + data[i].team + '</th>' + '<th>' + data[i].gamesPlayed + '</th>' +
+                        '<th>' + (data[i].points / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].rebounds / data[i].gamesPlayed).toFixed(1) + '</th>' +
+                        '<th>' + (data[i].assists / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].blocks / data[i].gamesPlayed).toFixed(1) + '</th>' +
+                        '<th>' + (data[i].steals / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].turnovers / data[i].gamesPlayed).toFixed(1) + '</th>' +
+                        '<th>' + (data[i].personalFouls / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].technicalFouls / data[i].gamesPlayed).toFixed(1) +
+                        '</th><th>' + data[i].season + '</th></tr>');
+                }
+                else {
+                    $('.TeamPlayers tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].id + '\">' + data[i].name + '</a></th>' +
+                        '<th>' + data[i].team + '</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>' + data[i].season + '</th></tr>');
+                }
             }
         }
-    })
+    });
+
+    $(document).ready(function () {
+        $(".createPlayer").on('click', function () {
+            $(".playerCreatePartial").css("display", "block");
+            $("#team").val(teamName);
+            $("#season").val(2018);
+            $(this).hide();
+        });
+    });
 </script>
 
 <div>
@@ -112,3 +124,10 @@
     </table>
 </div>
 
+<button type="button" class="createPlayer">Add Player</button>
+
+<div class="playerCreatePartial" style="display:none;">
+    @{
+        @Html.Partial("~/Views/Partials/_PlayerCreate.cshtml", new SmartGameStatTrackingWebApp.Models.Player());
+    }
+</div>
