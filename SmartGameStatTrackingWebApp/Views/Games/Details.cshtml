@@ -119,88 +119,85 @@
 
     </dl>
 </div>
-<div class="row">
-    <div class="col-md-6">
-        @Html.DisplayFor(model => model.homeTeam)
-    </div>
-    <div class="col-md-6">
-        @Html.DisplayFor(model => model.awayTeam)
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <table class="BoxScoreHome table table-responsive">
-            <tr class="head">
-                <th>
-                    Number
-                </th>
-                <th>
-                    Player
-                </th>
-                <th>
-                    PTS
-                </th>
-                <th>
-                    REB
-                </th>
-                <th>
-                    AST
-                </th>
-                <th>
-                    BLK
-                </th>
-                <th>
-                    STL
-                </th>
-                <th>
-                    T/O
-                </th>
-                <th>
-                    PFs
-                </th>
-                <th>
-                    TFs
-                </th>
-            </tr>
-        </table>
-    </div>
-    <div class="col-md-6">
-        <table class="BoxScoreAway table table-responsive">
-            <tr class="head">
-                <th>
-                    Number
-                </th>
-                <th>
-                    Player
-                </th>
-                <th>
-                    PTS
-                </th>
-                <th>
-                    REB
-                </th>
-                <th>
-                    AST
-                </th>
-                <th>
-                    BLK
-                </th>
-                <th>
-                    STL
-                </th>
-                <th>
-                    T/O
-                </th>
-                <th>
-                    PFs
-                </th>
-                <th>
-                    TFs
-                </th>
-            </tr>
-        </table>
+<div style="overflow-x:scroll;">
+    <div class="row">
+        <div class="col-md-4">
+            <table class="BoxScoreHome table table-responsive">
+                @Html.DisplayFor(model => model.homeTeam)
+                <tr class="head">
+                    <th>
+                        Number
+                    </th>
+                    <th>
+                        Player
+                    </th>
+                    <th>
+                        PTS
+                    </th>
+                    <th>
+                        REB
+                    </th>
+                    <th>
+                        AST
+                    </th>
+                    <th>
+                        BLK
+                    </th>
+                    <th>
+                        STL
+                    </th>
+                    <th>
+                        T/O
+                    </th>
+                    <th>
+                        PFs
+                    </th>
+                    <th>
+                        TFs
+                    </th>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <table class="BoxScoreAway table table-responsive">
+                @Html.DisplayFor(model => model.awayTeam)
+                <tr class="head">
+                    <th>
+                        Number
+                    </th>
+                    <th>
+                        Player
+                    </th>
+                    <th>
+                        PTS
+                    </th>
+                    <th>
+                        REB
+                    </th>
+                    <th>
+                        AST
+                    </th>
+                    <th>
+                        BLK
+                    </th>
+                    <th>
+                        STL
+                    </th>
+                    <th>
+                        T/O
+                    </th>
+                    <th>
+                        PFs
+                    </th>
+                    <th>
+                        TFs
+                    </th>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")

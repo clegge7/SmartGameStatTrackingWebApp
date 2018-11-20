@@ -121,7 +121,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
         [HttpPost]
         public ActionResult GetTeamPlayers(string teamName)
         {
-            var playersOnTeam = from players in db.Players
+            var playersOnTeam = from players in db.Players.OrderBy(x=>x.name)
                                 where players.team == teamName
                                 select players;
 
