@@ -194,6 +194,10 @@
     <Compile Include="Migrations\201811191035207_Game.Designer.cs">
       <DependentUpon>201811191035207_Game.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811201034224_Games2_ElectricBoogaloo.cs" />
+    <Compile Include="Migrations\201811201034224_Games2_ElectricBoogaloo.Designer.cs">
+      <DependentUpon>201811201034224_Games2_ElectricBoogaloo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Player.cs" />
@@ -344,6 +348,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811191035207_Game.resx">
       <DependentUpon>201811191035207_Game.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811201034224_Games2_ElectricBoogaloo.resx">
+      <DependentUpon>201811201034224_Games2_ElectricBoogaloo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

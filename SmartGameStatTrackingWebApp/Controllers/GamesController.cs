@@ -46,10 +46,18 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,homeTeamID,awayTeamID,gameDate,homeTeam,awayTeam,homePoints,awayPoints")] Game game)
+        public ActionResult Create([Bind(Include = "id,gameDate,homeTeam,awayTeam")] Game game)
         {
             if (ModelState.IsValid)
             {
+                game.homeTeamID = (from teams in db.Teams
+                                   where (teams.Name == game.homeTeam)
+                                   select teams.ID).FirstOrDefault();
+                game.awayTeamID = (from teams in db.Teams
+                                   where (teams.Name == game.awayTeam)
+                                   select teams.ID).FirstOrDefault();
+                game.homePoints = 0;
+                game.awayPoints = 0;
                 db.Games.Add(game);
                 db.SaveChanges();
                 return RedirectToAction("Index");
