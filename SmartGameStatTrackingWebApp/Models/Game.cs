@@ -18,6 +18,7 @@ namespace SmartGameStatTrackingWebApp.Models
 
         [Display(Name ="Date")]
         [Required]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime gameDate { get; set; }
 
         [Display(Name ="Home Team")]

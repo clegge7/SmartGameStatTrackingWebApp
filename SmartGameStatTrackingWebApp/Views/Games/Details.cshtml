@@ -4,6 +4,57 @@
     ViewBag.Title = "Details";
 }
 
+<script type="text/javascript" src="~/Content/js/plugins/jquery/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="~/Content/css/table.css" />
+
+<script type="text/javascript">
+    var homeTeamName = @Html.Raw(Json.Encode(Model.homeTeam));
+    $.ajax({
+        type: 'POST',
+        url: '/Players/GetTeamPlayers',
+        datatype: 'json',
+        data: {
+            teamName: homeTeamName
+        },
+        success: function (data) {
+            for (i = 0; i < data.length; i++) {
+                if (data[i].gamesPlayed != 0) {
+                    $('.BoxScoreHome tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].id + '\">' + data[i].name + '</a></th>' +
+                        '<th>' + data[i].points + '</th><th>' + data[i].rebounds + '</th><th>' + data[i].assists + '</th><th>' + data[i].blocks + '</th><th>' + data[i].steals
+                        + '</th><th>' + data[i].turnovers + '</th>' + '<th>' + data[i].personalFouls + '</th><th>' + data[i].technicalFouls + '</th>');
+                }
+                else {
+                    $('.BoxScoreHome tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].id + '\">' + data[i].name + '</a></th>' +
+                        '<th>' + data[i].team + '</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>' + data[i].season + '</th></tr>');
+                }
+            }
+        }
+    });
+
+    var awayTeamName = @Html.Raw(Json.Encode(Model.awayTeam));
+    $.ajax({
+        type: 'POST',
+        url: '/Players/GetTeamPlayers',
+        datatype: 'json',
+        data: {
+            teamName: awayTeamName
+        },
+        success: function (data) {
+            for (i = 0; i < data.length; i++) {
+                if (data[i].gamesPlayed != 0) {
+                    $('.BoxScoreAway tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].id + '\">' + data[i].name + '</a></th>' +
+                        '<th>' + data[i].points + '</th><th>' + data[i].rebounds + '</th><th>' + data[i].assists + '</th><th>' + data[i].blocks + '</th><th>' + data[i].steals
+                        + '</th><th>' + data[i].turnovers + '</th>' + '<th>' + data[i].personalFouls + '</th><th>' + data[i].technicalFouls + '</th>');
+                }
+                else {
+                    $('.BoxScoreAway tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].id + '\">' + data[i].name + '</a></th>' +
+                        '<th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th>');
+                }
+            }
+        }
+    });
+</script>
+
 <h2>Details</h2>
 
 <div>
@@ -67,6 +118,88 @@
         </dd>
 
     </dl>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        @Html.DisplayFor(model => model.homeTeam)
+    </div>
+    <div class="col-md-6">
+        @Html.DisplayFor(model => model.awayTeam)
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <table class="BoxScoreHome table table-responsive">
+            <tr class="head">
+                <th>
+                    Number
+                </th>
+                <th>
+                    Player
+                </th>
+                <th>
+                    PTS
+                </th>
+                <th>
+                    REB
+                </th>
+                <th>
+                    AST
+                </th>
+                <th>
+                    BLK
+                </th>
+                <th>
+                    STL
+                </th>
+                <th>
+                    T/O
+                </th>
+                <th>
+                    PFs
+                </th>
+                <th>
+                    TFs
+                </th>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <table class="BoxScoreAway table table-responsive">
+            <tr class="head">
+                <th>
+                    Number
+                </th>
+                <th>
+                    Player
+                </th>
+                <th>
+                    PTS
+                </th>
+                <th>
+                    REB
+                </th>
+                <th>
+                    AST
+                </th>
+                <th>
+                    BLK
+                </th>
+                <th>
+                    STL
+                </th>
+                <th>
+                    T/O
+                </th>
+                <th>
+                    PFs
+                </th>
+                <th>
+                    TFs
+                </th>
+            </tr>
+        </table>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |

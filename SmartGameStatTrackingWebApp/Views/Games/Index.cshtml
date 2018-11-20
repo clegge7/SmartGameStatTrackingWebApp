@@ -4,13 +4,16 @@
     ViewBag.Title = "Index";
 }
 
+<link rel="stylesheet" type="text/css" href="~/Content/css/table.css" />
+
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
+    <tr class="head">
+        <th></th>
         <th>
             @Html.DisplayNameFor(model => model.gameDate)
         </th>
@@ -29,29 +32,32 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.gameDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.homeTeam)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.awayTeam)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.homePoints)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.awayPoints)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Box Score", "Details", new { id = item.id })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gameDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.homeTeam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.awayTeam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.homePoints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.awayPoints)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
 
 </table>

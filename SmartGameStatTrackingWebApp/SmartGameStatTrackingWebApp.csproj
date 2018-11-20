@@ -171,6 +171,11 @@
     <Content Include="Views\Games\Edit.cshtml" />
     <Content Include="Views\Games\Index.cshtml" />
     <Content Include="Views\Partials\_PlayerCreate.cshtml" />
+    <Content Include="Views\BoxScores\Create.cshtml" />
+    <Content Include="Views\BoxScores\Delete.cshtml" />
+    <Content Include="Views\BoxScores\Details.cshtml" />
+    <Content Include="Views\BoxScores\Edit.cshtml" />
+    <Content Include="Views\BoxScores\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -179,6 +184,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BoxScoresController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
@@ -198,7 +204,12 @@
     <Compile Include="Migrations\201811201034224_Games2_ElectricBoogaloo.Designer.cs">
       <DependentUpon>201811201034224_Games2_ElectricBoogaloo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811201247350_BoxScoreInit.cs" />
+    <Compile Include="Migrations\201811201247350_BoxScoreInit.Designer.cs">
+      <DependentUpon>201811201247350_BoxScoreInit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BoxScore.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\SportsTrackDBContext.cs" />
@@ -351,6 +362,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811201034224_Games2_ElectricBoogaloo.resx">
       <DependentUpon>201811201034224_Games2_ElectricBoogaloo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811201247350_BoxScoreInit.resx">
+      <DependentUpon>201811201247350_BoxScoreInit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

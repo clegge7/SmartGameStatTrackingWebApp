@@ -129,12 +129,42 @@ namespace SmartGameStatTrackingWebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetPlayers()
+        public ActionResult GetPlayers(IEnumerable<SmartGameStatTrackingWebApp.Models.Player> playerModel)
         {
-            var AllPlayers = from players in db.Players
+            var playerList = from players in playerModel
                              select players;
+            
+            return Json(playerList);
+        }
 
-            return Json(AllPlayers);
+        [HttpPost]
+        public ActionResult PlayerSearch(string query, string category)
+        {
+            return Json("0");
+            if(category == "Players")
+            {
+                var playerList = (from players in db.Players
+                                 where players.name.ToLower() == query.ToLower()
+                                 select players).AsEnumerable();
+
+                return RedirectToAction("Index", "Players", playerList);
+            }
+            else if(category == "Teams")
+            {
+                var playerList = (from players in db.Players
+                                 where players.team == query
+                                 select players).AsEnumerable();
+
+                return RedirectToAction("Index", "Players", playerList);
+            }
+            else
+            {
+                var playerList = (from players in db.Players
+                                 where ((players.name == query) || (players.team==query))
+                                 select players).AsEnumerable();
+
+                return RedirectToAction("Index", "Players", playerList);
+            }
         }
 
         protected override void Dispose(bool disposing)

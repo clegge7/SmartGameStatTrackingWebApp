@@ -1,0 +1,99 @@
+﻿@model IEnumerable<SmartGameStatTrackingWebApp.Models.BoxScore>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.gameid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.player)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.playerid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.points)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rebounds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.assists)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.blocks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.steals)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.turnovers)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.personalFouls)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.technicalFouls)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.gameid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.player)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.playerid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.points)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rebounds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.assists)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.blocks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.steals)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.turnovers)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.personalFouls)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.technicalFouls)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
