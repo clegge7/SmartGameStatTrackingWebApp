@@ -60,6 +60,56 @@ namespace SmartGameStatTrackingWebApp.Controllers
                 game.awayPoints = 0;
                 db.Games.Add(game);
                 db.SaveChanges();
+                int gameID = (from games in db.Games
+                              select games).OrderByDescending(games => games.id)
+                              .FirstOrDefault().id;
+
+                var playersHome = (from players in db.Players
+                                  where (players.team == game.homeTeam)
+                                  select players).ToList();
+                var playersAway = (from players in db.Players
+                                   where (players.team == game.awayTeam)
+                                   select players).ToList();
+
+                for(int i = 0; i < playersHome.Count; i++)
+                {
+                    BoxScore boxscorehome = new BoxScore();
+                    boxscorehome.gameid = gameID;
+                    boxscorehome.number = playersHome[i].number;
+                    boxscorehome.player = playersHome[i].name;
+                    boxscorehome.playerid = playersHome[i].id;
+                    boxscorehome.teamID = game.homeTeamID;
+                    boxscorehome.points = 0;
+                    boxscorehome.rebounds = 0;
+                    boxscorehome.assists = 0;
+                    boxscorehome.blocks = 0;
+                    boxscorehome.steals = 0;
+                    boxscorehome.turnovers = 0;
+                    boxscorehome.personalFouls = 0;
+                    boxscorehome.technicalFouls = 0;
+                    db.BoxScores.Add(boxscorehome);
+                }
+
+                for (int i = 0; i < playersAway.Count; i++)
+                {
+                    BoxScore boxscoreaway = new BoxScore();
+                    boxscoreaway.gameid = gameID;
+                    boxscoreaway.number = playersHome[i].number;
+                    boxscoreaway.player = playersAway[i].name;
+                    boxscoreaway.playerid = playersAway[i].id;
+                    boxscoreaway.teamID = game.awayTeamID;
+                    boxscoreaway.points = 0;
+                    boxscoreaway.rebounds = 0;
+                    boxscoreaway.assists = 0;
+                    boxscoreaway.blocks = 0;
+                    boxscoreaway.steals = 0;
+                    boxscoreaway.turnovers = 0;
+                    boxscoreaway.personalFouls = 0;
+                    boxscoreaway.technicalFouls = 0;
+                    db.BoxScores.Add(boxscoreaway);
+                }
+
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -119,6 +169,13 @@ namespace SmartGameStatTrackingWebApp.Controllers
         {
             Game game = db.Games.Find(id);
             db.Games.Remove(game);
+            var BoxScores = (from boxscores in db.BoxScores
+                             where (boxscores.gameid == game.id)
+                             select boxscores).ToList();
+            for(int i = 0; i < BoxScores.Count; i++)
+            {
+                db.BoxScores.Remove(BoxScores[i]);
+            }
             db.SaveChanges();
             return RedirectToAction("Index");
         }

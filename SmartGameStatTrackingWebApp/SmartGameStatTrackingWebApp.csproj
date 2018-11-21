@@ -208,6 +208,14 @@
     <Compile Include="Migrations\201811201247350_BoxScoreInit.Designer.cs">
       <DependentUpon>201811201247350_BoxScoreInit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811211349260_BoxScoreID_To_Int.cs" />
+    <Compile Include="Migrations\201811211349260_BoxScoreID_To_Int.Designer.cs">
+      <DependentUpon>201811211349260_BoxScoreID_To_Int.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811211427412_TeamID_in_BoxScore.cs" />
+    <Compile Include="Migrations\201811211427412_TeamID_in_BoxScore.Designer.cs">
+      <DependentUpon>201811211427412_TeamID_in_BoxScore.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BoxScore.cs" />
     <Compile Include="Models\Game.cs" />
@@ -365,6 +373,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811201247350_BoxScoreInit.resx">
       <DependentUpon>201811201247350_BoxScoreInit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811211349260_BoxScoreID_To_Int.resx">
+      <DependentUpon>201811211349260_BoxScoreID_To_Int.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811211427412_TeamID_in_BoxScore.resx">
+      <DependentUpon>201811211427412_TeamID_in_BoxScore.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

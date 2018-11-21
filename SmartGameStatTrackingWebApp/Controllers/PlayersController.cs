@@ -119,10 +119,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetTeamPlayers(string teamName)
+        public ActionResult GetTeamPlayers(int teamID, int gameID)
         {
-            var playersOnTeam = from players in db.Players.OrderBy(x=>x.name)
-                                where players.team == teamName
+            var playersOnTeam = from players in db.BoxScores.OrderBy(x => x.number)
+                                where ((players.teamID == teamID) && (players.gameid==gameID))
                                 select players;
 
             return Json(playersOnTeam);
@@ -137,6 +137,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
             return Json(playerList);
         }
 
+        //Need to get working
         [HttpPost]
         public ActionResult PlayerSearch(string query, string category)
         {

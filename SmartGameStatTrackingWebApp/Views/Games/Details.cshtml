@@ -8,48 +8,40 @@
 <link rel="stylesheet" type="text/css" href="~/Content/css/table.css" />
 
 <script type="text/javascript">
-    var homeTeamName = @Html.Raw(Json.Encode(Model.homeTeam));
+    var homeTeamName = @Html.Raw(Json.Encode(Model.homeTeamID));
+    var gameID = @Html.Raw(Json.Encode(Model.id));
     $.ajax({
         type: 'POST',
         url: '/Players/GetTeamPlayers',
         datatype: 'json',
         data: {
-            teamName: homeTeamName
+            teamID: homeTeamName,
+            gameID: gameID
         },
         success: function (data) {
+            console.log(data);
             for (i = 0; i < data.length; i++) {
-                if (data[i].gamesPlayed != 0) {
-                    $('.BoxScoreHome tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].id + '\">' + data[i].name + '</a></th>' +
+                    $('.BoxScoreHome tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].playerid + '\">' + data[i].player + '</a></th>' +
                         '<th>' + data[i].points + '</th><th>' + data[i].rebounds + '</th><th>' + data[i].assists + '</th><th>' + data[i].blocks + '</th><th>' + data[i].steals
                         + '</th><th>' + data[i].turnovers + '</th>' + '<th>' + data[i].personalFouls + '</th><th>' + data[i].technicalFouls + '</th>');
-                }
-                else {
-                    $('.BoxScoreHome tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].id + '\">' + data[i].name + '</a></th>' +
-                        '<th>' + data[i].team + '</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>' + data[i].season + '</th></tr>');
-                }
             }
         }
     });
 
-    var awayTeamName = @Html.Raw(Json.Encode(Model.awayTeam));
+    var awayTeamName = @Html.Raw(Json.Encode(Model.awayTeamID));
     $.ajax({
         type: 'POST',
         url: '/Players/GetTeamPlayers',
         datatype: 'json',
         data: {
-            teamName: awayTeamName
+            teamID: awayTeamName,
+            gameID: gameID
         },
         success: function (data) {
             for (i = 0; i < data.length; i++) {
-                if (data[i].gamesPlayed != 0) {
-                    $('.BoxScoreAway tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].id + '\">' + data[i].name + '</a></th>' +
+                    $('.BoxScoreAway tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].playerid + '\">' + data[i].player + '</a></th>' +
                         '<th>' + data[i].points + '</th><th>' + data[i].rebounds + '</th><th>' + data[i].assists + '</th><th>' + data[i].blocks + '</th><th>' + data[i].steals
                         + '</th><th>' + data[i].turnovers + '</th>' + '<th>' + data[i].personalFouls + '</th><th>' + data[i].technicalFouls + '</th>');
-                }
-                else {
-                    $('.BoxScoreAway tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].id + '\">' + data[i].name + '</a></th>' +
-                        '<th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th>');
-                }
             }
         }
     });
@@ -119,81 +111,89 @@
 
     </dl>
 </div>
-<div style="overflow-x:scroll;">
+<div >
     <div class="row">
         <div class="col-md-4">
-            <table class="BoxScoreHome table table-responsive">
+            <h6 style="font-size:32px;">
                 @Html.DisplayFor(model => model.homeTeam)
-                <tr class="head">
-                    <th>
-                        Number
-                    </th>
-                    <th>
-                        Player
-                    </th>
-                    <th>
-                        PTS
-                    </th>
-                    <th>
-                        REB
-                    </th>
-                    <th>
-                        AST
-                    </th>
-                    <th>
-                        BLK
-                    </th>
-                    <th>
-                        STL
-                    </th>
-                    <th>
-                        T/O
-                    </th>
-                    <th>
-                        PFs
-                    </th>
-                    <th>
-                        TFs
-                    </th>
-                </tr>
-            </table>
+            </h6>
+            <div style="overflow-x:scroll;">
+                <table class="BoxScoreHome table table-responsive">
+                    <tr class="head">
+                        <th>
+                            Number
+                        </th>
+                        <th>
+                            Player
+                        </th>
+                        <th>
+                            PTS
+                        </th>
+                        <th>
+                            REB
+                        </th>
+                        <th>
+                            AST
+                        </th>
+                        <th>
+                            BLK
+                        </th>
+                        <th>
+                            STL
+                        </th>
+                        <th>
+                            T/O
+                        </th>
+                        <th>
+                            PFs
+                        </th>
+                        <th>
+                            TFs
+                        </th>
+                    </tr>
+                </table>
+            </div>
         </div>
         <div class="col-md-4">
-            <table class="BoxScoreAway table table-responsive">
+            <h6 style="font-size:32px;">
                 @Html.DisplayFor(model => model.awayTeam)
-                <tr class="head">
-                    <th>
-                        Number
-                    </th>
-                    <th>
-                        Player
-                    </th>
-                    <th>
-                        PTS
-                    </th>
-                    <th>
-                        REB
-                    </th>
-                    <th>
-                        AST
-                    </th>
-                    <th>
-                        BLK
-                    </th>
-                    <th>
-                        STL
-                    </th>
-                    <th>
-                        T/O
-                    </th>
-                    <th>
-                        PFs
-                    </th>
-                    <th>
-                        TFs
-                    </th>
-                </tr>
-            </table>
+            </h6>
+            <div style="overflow-x:scroll;">
+                <table class="BoxScoreAway table table-responsive">
+                    <tr class="head">
+                        <th>
+                            Number
+                        </th>
+                        <th>
+                            Player
+                        </th>
+                        <th>
+                            PTS
+                        </th>
+                        <th>
+                            REB
+                        </th>
+                        <th>
+                            AST
+                        </th>
+                        <th>
+                            BLK
+                        </th>
+                        <th>
+                            STL
+                        </th>
+                        <th>
+                            T/O
+                        </th>
+                        <th>
+                            PFs
+                        </th>
+                        <th>
+                            TFs
+                        </th>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </div>

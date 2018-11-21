@@ -15,7 +15,9 @@ namespace SmartGameStatTrackingWebApp.Models
 
         public string player { get; set; }
 
-        public string playerid { get; set; }
+        public int teamID { get; set; }
+
+        public int playerid { get; set; }
 
         public int points { get; set; }
 
