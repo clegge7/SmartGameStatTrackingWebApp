@@ -83,6 +83,28 @@ namespace SmartGameStatTrackingWebApp.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(boxScore).State = EntityState.Modified;
+                /*//get original box score and compare to new values
+                var oldPlayerID = GetStat(boxScore.id, "player");
+                var oldPoints = GetStat(boxScore.id, "points");
+                var oldRebounds = GetStat(boxScore.id, "rebounds");
+
+                if (oldPoints != boxScore.points)
+                {
+                    //update player and game tables for points
+
+                    //player table
+                    var playdata = db.Players.FirstOrDefault(x => x.id == oldPlayerID);
+                    playdata.points += (boxScore.points - oldPoints);
+
+                    db.Entry(playdata).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                if(oldRebounds != boxScore.rebounds)
+                {
+                    //update player and game tables for points
+                }
+
+                //db.Entry(boxScore).State = EntityState.Modified;*/
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -113,6 +135,19 @@ namespace SmartGameStatTrackingWebApp.Controllers
             db.BoxScores.Remove(boxScore);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public int GetStat(int ID, string stat)
+        {
+            if (stat == "player")
+            {
+                return db.BoxScores.FirstOrDefault(x => x.id == ID).playerid;
+            }
+            if (stat == "points")
+            {
+                return db.BoxScores.FirstOrDefault(x => x.id == ID).points;
+            }
+            return -1;
         }
 
         protected override void Dispose(bool disposing)

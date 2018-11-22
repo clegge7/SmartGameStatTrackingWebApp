@@ -129,6 +129,16 @@ namespace SmartGameStatTrackingWebApp.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetTeamPlayers2(string teamName)
+        {
+            var playersOnTeam = from players in db.Players.OrderBy(x => x.number)
+                                where (players.team == teamName)
+                                select players;
+
+            return Json(playersOnTeam);
+        }
+
+        [HttpPost]
         public ActionResult GetPlayers(IEnumerable<SmartGameStatTrackingWebApp.Models.Player> playerModel)
         {
             var playerList = from players in playerModel

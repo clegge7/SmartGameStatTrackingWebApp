@@ -10,7 +10,7 @@
     var teamName = @Html.Raw(Json.Encode(Model.Name));
     $.ajax({
         type: 'POST',
-        url: '/Players/GetTeamPlayers',
+        url: '/Players/GetTeamPlayers2',
         datatype: 'json',
         data: {
             teamName: teamName
