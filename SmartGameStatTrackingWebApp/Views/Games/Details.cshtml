@@ -46,23 +46,21 @@
 </script>
 
 <div class="jumbotron" style="border:solid;width:100%;border-radius:25px;border-color:darkslategray;background-color:white;">
-    <div class="gameDate" style="text-align:center; font-size:18px;">
+    <div class="gameDate" style="text-align:center; font-size:24px;">
         @Html.DisplayFor(model => model.gameDate)
     </div>
     <div class="row">
-        <div class="awayTeam col-md-6" style="text-align:center;font-size:18px;">
+        <div class="awayTeam col-md-6" style="text-align:center;font-size:24px;">
             @Html.DisplayFor(model => model.awayTeam)
+            <div style="text-align:center;font-size:36px;">
+                @Html.DisplayFor(model => model.awayPoints)
+            </div>
         </div>
-        <div class="homeTeam col-md-6" style="text-align:center;font-size:18px;">
+        <div class="homeTeam col-md-6" style="text-align:center;font-size:24px;">
             @Html.DisplayFor(model => model.homeTeam)
-        </div>
-    </div>
-    <div class="row">
-        <div class="awayTeam col-md-6" style="text-align:center;font-size:36px;">
-            @Html.DisplayFor(model => model.awayPoints)
-        </div>
-        <div class="homeTeam col-md-6" style="text-align:center;font-size:36px;">
-            @Html.DisplayFor(model => model.homePoints)
+            <div style="text-align:center;font-size:36px;">
+                @Html.DisplayFor(model => model.homePoints)
+            </div>
         </div>
     </div>
 </div>
