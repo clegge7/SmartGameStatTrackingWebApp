@@ -46,7 +46,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,gameid,number,player,playerid,points,rebounds,assists,blocks,steals,turnovers,personalFouls,technicalFouls")] BoxScore boxScore)
+        public ActionResult Create([Bind(Include = "id,gameid,number,player,teamID,playerid,points,rebounds,assists,blocks,steals,turnovers,personalFouls,technicalFouls")] BoxScore boxScore)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,gameid,number,player,playerid,points,rebounds,assists,blocks,steals,turnovers,personalFouls,technicalFouls")] BoxScore boxScore)
+        public ActionResult Edit([Bind(Include = "id,gameid,number,player,teamID,playerid,points,rebounds,assists,blocks,steals,turnovers,personalFouls,technicalFouls")] BoxScore boxScore)
         {
             if (ModelState.IsValid)
             {
@@ -114,9 +114,6 @@ namespace SmartGameStatTrackingWebApp.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-        //[HttpPost]
-        //public ActionResult GetPlayers()
 
         protected override void Dispose(bool disposing)
         {

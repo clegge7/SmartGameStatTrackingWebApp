@@ -17,7 +17,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // GET: Players
         public ActionResult Index()
         {
-            return View(db.Players.ToList());
+            return View(db.Players.OrderBy(players => players.name).ToList());
         }
 
         // GET: Players/Details/5

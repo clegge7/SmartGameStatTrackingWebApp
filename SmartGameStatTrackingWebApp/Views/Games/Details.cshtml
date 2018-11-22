@@ -1,9 +1,5 @@
 ﻿@model SmartGameStatTrackingWebApp.Models.Game
 
-@{
-    ViewBag.Title = "Details";
-}
-
 <script type="text/javascript" src="~/Content/js/plugins/jquery/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="~/Content/css/table.css" />
 
@@ -23,7 +19,8 @@
             for (i = 0; i < data.length; i++) {
                     $('.BoxScoreHome tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].playerid + '\">' + data[i].player + '</a></th>' +
                         '<th>' + data[i].points + '</th><th>' + data[i].rebounds + '</th><th>' + data[i].assists + '</th><th>' + data[i].blocks + '</th><th>' + data[i].steals
-                        + '</th><th>' + data[i].turnovers + '</th>' + '<th>' + data[i].personalFouls + '</th><th>' + data[i].technicalFouls + '</th>');
+                        + '</th><th>' + data[i].turnovers + '</th>' + '<th>' + data[i].personalFouls + '</th><th>' + data[i].technicalFouls + '</th><th><a href="/BoxScores/Edit/' +
+                        data[i].id + '" class="btn btn-primary-active">Edit</a></th>');
             }
         }
     });
@@ -41,119 +38,36 @@
             for (i = 0; i < data.length; i++) {
                     $('.BoxScoreAway tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].playerid + '\">' + data[i].player + '</a></th>' +
                         '<th>' + data[i].points + '</th><th>' + data[i].rebounds + '</th><th>' + data[i].assists + '</th><th>' + data[i].blocks + '</th><th>' + data[i].steals
-                        + '</th><th>' + data[i].turnovers + '</th>' + '<th>' + data[i].personalFouls + '</th><th>' + data[i].technicalFouls + '</th>');
+                        + '</th><th>' + data[i].turnovers + '</th>' + '<th>' + data[i].personalFouls + '</th><th>' + data[i].technicalFouls + '</th><th><a href="/BoxScores/Edit/' +
+                        data[i].id + '" class="btn btn-primary-active">Edit</a></th>');
             }
         }
     });
 </script>
 
-<h2>Details</h2>
-
-<div>
-    <h4>Game</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.homeTeamID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.homeTeamID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.awayTeamID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.awayTeamID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.gameDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.gameDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.homeTeam)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.homeTeam)
-        </dd>
-
-        <dt>
+<div class="jumbotron" style="border:solid;width:100%;border-radius:25px;border-color:darkslategray;background-color:white;">
+    <div class="gameDate" style="text-align:center; font-size:32px;">
+        @Html.DisplayFor(model => model.gameDate)
+    </div>
+    <div class="row">
+        <div class="awayTeam col-md-6" style="text-align:center;font-size:32px;">
             @Html.DisplayNameFor(model => model.awayTeam)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.awayTeam)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.homePoints)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.homePoints)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.awayPoints)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="homeTeam col-md-6" style="text-align:center;font-size:32px;">
+            @Html.DisplayNameFor(model => model.homeTeam)
+        </div>
+    </div>
+    <div class="row">
+        <div class="awayTeam col-md-6" style="text-align:center;font-size:72px;">
             @Html.DisplayFor(model => model.awayPoints)
-        </dd>
-
-    </dl>
+        </div>
+        <div class="homeTeam col-md-6" style="text-align:center;font-size:72px;">
+            @Html.DisplayFor(model => model.homePoints)
+        </div>
+    </div>
 </div>
 <div >
     <div class="row">
-        <div class="col-md-4">
-            <h6 style="font-size:32px;">
-                @Html.DisplayFor(model => model.homeTeam)
-            </h6>
-            <div style="overflow-x:scroll;">
-                <table class="BoxScoreHome table table-responsive">
-                    <tr class="head">
-                        <th>
-                            Number
-                        </th>
-                        <th>
-                            Player
-                        </th>
-                        <th>
-                            PTS
-                        </th>
-                        <th>
-                            REB
-                        </th>
-                        <th>
-                            AST
-                        </th>
-                        <th>
-                            BLK
-                        </th>
-                        <th>
-                            STL
-                        </th>
-                        <th>
-                            T/O
-                        </th>
-                        <th>
-                            PFs
-                        </th>
-                        <th>
-                            TFs
-                        </th>
-                    </tr>
-                </table>
-            </div>
-        </div>
         <div class="col-md-4">
             <h6 style="font-size:32px;">
                 @Html.DisplayFor(model => model.awayTeam)
@@ -191,6 +105,49 @@
                         <th>
                             TFs
                         </th>
+                        <th></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h6 style="font-size:32px;">
+                @Html.DisplayFor(model => model.homeTeam)
+            </h6>
+            <div style="overflow-x:scroll;">
+                <table class="BoxScoreHome table table-responsive">
+                    <tr class="head">
+                        <th>
+                            Number
+                        </th>
+                        <th>
+                            Player
+                        </th>
+                        <th>
+                            PTS
+                        </th>
+                        <th>
+                            REB
+                        </th>
+                        <th>
+                            AST
+                        </th>
+                        <th>
+                            BLK
+                        </th>
+                        <th>
+                            STL
+                        </th>
+                        <th>
+                            T/O
+                        </th>
+                        <th>
+                            PFs
+                        </th>
+                        <th>
+                            TFs
+                        </th>
+                        <th></th>
                     </tr>
                 </table>
             </div>
