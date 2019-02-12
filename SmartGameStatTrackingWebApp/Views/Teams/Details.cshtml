@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="~/Content/css/table.css" />
 
 <script type="text/javascript">
-    var teamName = @Html.Raw(Json.Encode(Model.Name));
+    var teamName = @Html.Raw(Json.Encode(Model.ID));
     $.ajax({
         type: 'POST',
         url: '/Players/GetTeamPlayers2',

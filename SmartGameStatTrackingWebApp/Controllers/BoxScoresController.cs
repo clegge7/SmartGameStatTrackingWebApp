@@ -17,12 +17,20 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // GET: BoxScores
         public ActionResult Index()
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             return View(db.BoxScores.ToList());
         }
 
         // GET: BoxScores/Details/5
         public ActionResult Details(int? id)
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -38,6 +46,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // GET: BoxScores/Create
         public ActionResult Create()
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             return View();
         }
 
@@ -48,6 +60,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,gameid,number,player,teamID,playerid,points,rebounds,assists,blocks,steals,turnovers,personalFouls,technicalFouls")] BoxScore boxScore)
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             if (ModelState.IsValid)
             {
                 db.BoxScores.Add(boxScore);
@@ -61,6 +77,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // GET: BoxScores/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -80,6 +100,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,gameid,number,player,teamID,playerid,points,rebounds,assists,blocks,steals,turnovers,personalFouls,technicalFouls")] BoxScore boxScore)
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(boxScore).State = EntityState.Modified;
@@ -114,6 +138,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // GET: BoxScores/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -131,6 +159,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             BoxScore boxScore = db.BoxScores.Find(id);
             db.BoxScores.Remove(boxScore);
             db.SaveChanges();

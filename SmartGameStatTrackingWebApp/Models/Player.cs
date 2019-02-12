@@ -47,6 +47,8 @@ namespace SmartGameStatTrackingWebApp.Models
         [Display(Name = "TF/G")]
         public int technicalFouls { get; set; }
 
+        public int? Team_ID { get; set; }
+
         [Display(Name = "Season")]
         [Range(2018, Int32.MaxValue)]
         public int season { get; set; }

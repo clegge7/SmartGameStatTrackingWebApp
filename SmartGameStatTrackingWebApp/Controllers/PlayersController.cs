@@ -17,12 +17,20 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // GET: Players
         public ActionResult Index()
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             return View(db.Players.OrderBy(players => players.name).ToList());
         }
 
         // GET: Players/Details/5
         public ActionResult Details(int? id)
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -38,6 +46,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // GET: Players/Create
         public ActionResult Create()
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             return View();
         }
 
@@ -48,6 +60,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,number,name,team,gamesPlayed,points,rebounds,assists,blocks,steals,turnovers,personalFouls,technicalFouls,season")] Player player)
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             if (ModelState.IsValid)
             {
                 db.Players.Add(player);
@@ -64,6 +80,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // GET: Players/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -83,6 +103,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,number,name,team,gamesPlayed,points,rebounds,assists,blocks,steals,turnovers,personalFouls,technicalFouls,season")] Player player)
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(player).State = EntityState.Modified;
@@ -95,6 +119,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // GET: Players/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -112,6 +140,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if(User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             Player player = db.Players.Find(id);
             db.Players.Remove(player);
             db.SaveChanges();
@@ -129,10 +161,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetTeamPlayers2(string teamName)
+        public ActionResult GetTeamPlayers2(int teamName)
         {
             var playersOnTeam = from players in db.Players.OrderBy(x => x.number)
-                                where (players.team == teamName)
+                                where (players.Team_ID == teamName)
                                 select players;
 
             return Json(playersOnTeam);

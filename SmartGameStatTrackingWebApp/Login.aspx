@@ -38,6 +38,7 @@
             <div style="margin-bottom: 10px">
                <div>
                   <asp:Button runat="server" OnClick="SignIn" Text="Log in" />
+                   <p>Need an Account? <a href="Register.aspx">Register</a></p>
                </div>
             </div>
          </asp:PlaceHolder>

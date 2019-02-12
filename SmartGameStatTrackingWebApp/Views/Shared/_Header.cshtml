@@ -99,14 +99,14 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="~/Content/img/user.jpg" class="user-image" alt="User Image">
-                        <span class="hidden-xs">Sample User</span>
+                        <span class="hidden-xs">@User.Identity.Name</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
                             <img src="~/Content/img/user.jpg" class="img-circle" alt="User Image">
 
                             <p>
-                                Alexander Pierce - Web Developer
+                                @User.Identity.Name
                                 <small>Member since Nov. 2012</small>
                             </p>
                         </li>
@@ -128,7 +128,7 @@
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                <a href="~/Login.aspx" class="btn btn-default btn-flat sign-out">Sign out</a>
                             </div>
                         </li>
                     </ul>
@@ -143,3 +143,16 @@
         </div>
     </nav>
 </header>
+
+<script type="text/javascript">
+    $('.sign-out').click(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/Home/SignOut',
+            datatype: 'json',
+            success: function (data) {
+
+            }
+        });
+    });
+</script>

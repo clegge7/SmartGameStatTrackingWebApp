@@ -15,9 +15,9 @@ namespace SmartGameStatTrackingWebApp
             {
                 if (User.Identity.IsAuthenticated)
                 {
-                    StatusText.Text = string.Format("Hello {0}!!", User.Identity.GetUserName());
-                    LoginStatus.Visible = true;
-                    LogoutButton.Visible = true;
+                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                    authenticationManager.SignOut();
+                    Response.Redirect("~/Login.aspx");
                 }
                 else
                 {

@@ -17,12 +17,20 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // GET: Games
         public ActionResult Index()
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             return View(db.Games.OrderByDescending(game => game.gameDate).ToList());
         }
 
         // GET: Games/Details/5
         public ActionResult Details(int? id)
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -38,6 +46,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // GET: Games/Create
         public ActionResult Create()
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             return View();
         }
 
@@ -48,6 +60,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,gameDate,homeTeam,awayTeam")] Game game)
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             if (ModelState.IsValid)
             {
                 game.homeTeamID = (from teams in db.Teams
@@ -119,6 +135,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // GET: Games/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -138,6 +158,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,homeTeamID,awayTeamID,gameDate,homeTeam,awayTeam,homePoints,awayPoints")] Game game)
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(game).State = EntityState.Modified;
@@ -150,6 +174,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // GET: Games/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -167,6 +195,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
             Game game = db.Games.Find(id);
             db.Games.Remove(game);
             var BoxScores = (from boxscores in db.BoxScores

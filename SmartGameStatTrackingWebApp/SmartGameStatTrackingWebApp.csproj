@@ -256,6 +256,10 @@
     <Compile Include="Migrations\201902052244517_UserAccounts.Designer.cs">
       <DependentUpon>201902052244517_UserAccounts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902122252106_PlayerTeamID.cs" />
+    <Compile Include="Migrations\201902122252106_PlayerTeamID.Designer.cs">
+      <DependentUpon>201902122252106_PlayerTeamID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BoxScore.cs" />
     <Compile Include="Models\Game.cs" />
@@ -430,6 +434,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902052244517_UserAccounts.resx">
       <DependentUpon>201902052244517_UserAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902122252106_PlayerTeamID.resx">
+      <DependentUpon>201902122252106_PlayerTeamID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
