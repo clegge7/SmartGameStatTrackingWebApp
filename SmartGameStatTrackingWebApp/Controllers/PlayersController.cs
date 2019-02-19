@@ -58,7 +58,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,number,name,team,gamesPlayed,points,rebounds,assists,blocks,steals,turnovers,personalFouls,technicalFouls,season")] Player player)
+        public ActionResult Create([Bind(Include = "id,number,name,team,gamesPlayed,points,rebounds,assists,blocks,steals,turnovers,personalFouls,technicalFouls,season,Team_ID")] Player player)
         {
             if (User.Identity.Name == "")
             {
@@ -68,8 +68,9 @@ namespace SmartGameStatTrackingWebApp.Controllers
             {
                 db.Players.Add(player);
                 db.SaveChanges();
+                //Team ID's now being used by Player Model Need to pass correct team ID here for use
                 var teamID = (from teams in db.Teams
-                             where teams.Name == player.team
+                             where teams.ID == player.Team_ID
                              select teams).FirstOrDefault().ID;
                 return RedirectToAction("Details", "Teams", new { id = teamID });
             }
@@ -101,7 +102,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,number,name,team,gamesPlayed,points,rebounds,assists,blocks,steals,turnovers,personalFouls,technicalFouls,season")] Player player)
+        public ActionResult Edit([Bind(Include = "id,number,name,team,gamesPlayed,points,rebounds,assists,blocks,steals,turnovers,personalFouls,technicalFouls,season,Team_ID")] Player player)
         {
             if (User.Identity.Name == "")
             {

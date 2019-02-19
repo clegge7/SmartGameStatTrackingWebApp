@@ -43,6 +43,9 @@
                 <asp:Button runat="server" OnClick="CreateUser_Click" Text="Register" />
                 <p>Already have an account? <a href="Login.aspx">Log in</a></p>
             </div>
+            <!--For creating admin role<div>
+                <asp:Button runat="server" OnClick="CreateRole" Text="Create Role" />
+            </div>-->
         </div>
     </div>
     </form>
