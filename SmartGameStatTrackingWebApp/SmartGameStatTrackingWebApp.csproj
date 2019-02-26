@@ -205,6 +205,9 @@
     <Content Include="Views\BoxScores\Details.cshtml" />
     <Content Include="Views\BoxScores\Edit.cshtml" />
     <Content Include="Views\BoxScores\Index.cshtml" />
+    <Content Include="Views\Profiles\Delete.cshtml" />
+    <Content Include="Views\Profiles\Details.cshtml" />
+    <Content Include="Views\Profiles\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -216,6 +219,7 @@
     <Compile Include="Controllers\BoxScoresController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
+    <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -260,10 +264,19 @@
     <Compile Include="Migrations\201902122252106_PlayerTeamID.Designer.cs">
       <DependentUpon>201902122252106_PlayerTeamID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902262227263_Profiles.cs" />
+    <Compile Include="Migrations\201902262227263_Profiles.Designer.cs">
+      <DependentUpon>201902262227263_Profiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902262245510_Profiles_Schema_Fix.cs" />
+    <Compile Include="Migrations\201902262245510_Profiles_Schema_Fix.Designer.cs">
+      <DependentUpon>201902262245510_Profiles_Schema_Fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BoxScore.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\Profiles.cs" />
     <Compile Include="Models\SportsTrackDBContext.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -437,6 +450,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902122252106_PlayerTeamID.resx">
       <DependentUpon>201902122252106_PlayerTeamID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902262227263_Profiles.resx">
+      <DependentUpon>201902262227263_Profiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902262245510_Profiles_Schema_Fix.resx">
+      <DependentUpon>201902262245510_Profiles_Schema_Fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

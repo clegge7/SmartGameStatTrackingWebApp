@@ -26,5 +26,6 @@ namespace SmartGameStatTrackingWebApp.Models
 
         public System.Data.Entity.DbSet<SmartGameStatTrackingWebApp.Models.BoxScore> BoxScores { get; set; }
 
+        public System.Data.Entity.DbSet<SmartGameStatTrackingWebApp.Models.Profiles> Profiles { get; set; }
     }
 }

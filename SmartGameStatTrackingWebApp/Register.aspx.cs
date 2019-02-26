@@ -21,7 +21,15 @@ namespace SmartGameStatTrackingWebApp
             IdentityResult result = manager.Create(user, Password.Text);
 
             //manager.AddToRole(user.Id, "Admin");
-            
+
+            //Create Profile
+            Profiles Profile = new Profiles
+            {
+                UserName = UserName.Text,
+                Email = Email.Text
+            };
+            db.Profiles.Add(Profile);
+            db.SaveChanges();
 
             if (result.Succeeded)
             {
