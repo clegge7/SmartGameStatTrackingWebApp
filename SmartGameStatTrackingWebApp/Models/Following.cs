@@ -6,13 +6,13 @@ using System.Web;
 
 namespace SmartGameStatTrackingWebApp.Models
 {
-    public class Profiles
+    public class Following
     {
         [Key]
-        public string UserName { get; set; }
+        public int id { get; set; }
 
-        public string Email { get; set; }
+        public string userName { get; set; }
 
-        public int TeamsFollowing { get; set; }
+        public int teamID { get; set; }
     }
 }

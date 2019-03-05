@@ -208,6 +208,7 @@
     <Content Include="Views\Profiles\Delete.cshtml" />
     <Content Include="Views\Profiles\Details.cshtml" />
     <Content Include="Views\Profiles\Edit.cshtml" />
+    <Content Include="Views\Games\AdminIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -272,8 +273,17 @@
     <Compile Include="Migrations\201902262245510_Profiles_Schema_Fix.Designer.cs">
       <DependentUpon>201902262245510_Profiles_Schema_Fix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903052209271_Profiles_List_to_Arr.cs" />
+    <Compile Include="Migrations\201903052209271_Profiles_List_to_Arr.Designer.cs">
+      <DependentUpon>201903052209271_Profiles_List_to_Arr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903052238142_Following.cs" />
+    <Compile Include="Migrations\201903052238142_Following.Designer.cs">
+      <DependentUpon>201903052238142_Following.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BoxScore.cs" />
+    <Compile Include="Models\Following.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Profiles.cs" />
@@ -456,6 +466,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902262245510_Profiles_Schema_Fix.resx">
       <DependentUpon>201902262245510_Profiles_Schema_Fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903052209271_Profiles_List_to_Arr.resx">
+      <DependentUpon>201903052209271_Profiles_List_to_Arr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903052238142_Following.resx">
+      <DependentUpon>201903052238142_Following.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

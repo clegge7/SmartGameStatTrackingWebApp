@@ -3,7 +3,10 @@
 @{
     ViewBag.Title = Model.Name;
 }
+
+<button id="follow-button">+ Follow</button>	
 <script type="text/javascript" src="~/Content/js/plugins/jquery/jquery-3.3.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <link rel="stylesheet" type="text/css" href="~/Content/css/table.css" />
 
 <script type="text/javascript">
@@ -41,8 +44,80 @@
             $("#season").val(2018);
             $(this).hide();
         });
+
+        $("#follow-button").click(function () {
+            if ($("#follow-button").text() == "+ Follow") {
+                // *** State Change: To Following ***      
+                // We want the button to squish (or shrink) by 10px as a reaction to the click and for it to last 100ms    
+                $("#follow-button").animate({ width: '-=10px' }, 100, function () { });
+
+                // then now we want the button to expand out to it's full state
+                // The left translation is to keep the button centred with it's longer width
+                $("#follow-button").animate({ width: '+=45px', left: '-=15px' }, 300, function () {
+                    $("#follow-button").text("Unfollow");
+
+                    // Animate the background transition from white to green. Using JQuery Color
+                    $("#follow-button").animate({
+                        backgroundColor: "#2EB82E",
+                        borderColor: "#2EB82E"
+                    }, 1000);
+                });
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Teams/Follow',
+                    datatype: 'json',
+                    data: {
+                        teamName: teamName
+                    },
+                    success: function (data) {
+                        alert(data);
+                    }
+                });
+                
+            } else {
+
+                // *** State Change: Unfollow ***     
+                // Change the button back to it's original state
+                $("#follow-button").animate({ width: '-=25px', left: '+=15px' }, 300, function () {
+                    $("#follow-button").text("+ Follow");
+                    $("#follow-button").css("color", "darkslategray");
+                    $("#follow-button").css("background-color", "#ffffff");
+                    $("#follow-button").css("border-color", "darkslategray");
+                });
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Teams/Unfollow',
+                    datatype: 'json',
+                    data: {
+                        teamName: teamName
+                    },
+                    success: function (data) {
+                        alert(data);
+                    }
+                });
+            }
+        });
+
     });
 </script>
+
+<style type="text/css">
+    #follow-button {
+        color: darkslategray;
+        font-family: "Helvetica";
+        font-size: 10pt;
+        background-color: #ffffff;
+        border: 1px solid;
+        border-color: darkslategray;
+        border-radius: 3px;
+        width: 85px;
+        height: 30px;
+        top: 50px;
+        left: 50px;
+    }
+</style>
 
 <div>
     <dl class="dl-horizontal">

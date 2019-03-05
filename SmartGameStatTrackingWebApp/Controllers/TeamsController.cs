@@ -147,6 +147,43 @@ namespace SmartGameStatTrackingWebApp.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public ActionResult Follow(int teamName)
+        {
+            var TeamsFollowing = (from teams in db.Following
+                                  where ((teams.teamID == teamName) && (teams.userName == User.Identity.Name))
+                                  select teams).ToList();
+
+            if(TeamsFollowing.Count == 0)
+            {
+                Following newFollow = new Following();
+                newFollow.teamID = teamName;
+                newFollow.userName = User.Identity.Name;
+                db.Following.Add(newFollow);
+                db.SaveChanges();
+            }
+            
+
+            return Json(teamName);
+        }
+
+        [HttpPost]
+        public ActionResult Unfollow(int teamName)
+        {
+            var TeamsFollowing = (from teams in db.Following
+                                  where ((teams.teamID == teamName) && (teams.userName == User.Identity.Name))
+                                  select teams).ToList();
+
+            if (TeamsFollowing.Count != 0)
+            {
+                Following newUnfollow = db.Following.Find(TeamsFollowing[0].id);
+                db.Following.Remove(newUnfollow);
+                db.SaveChanges();
+            }
+
+            return Json(teamName);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
