@@ -69,10 +69,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
                 db.Players.Add(player);
                 db.SaveChanges();
                 //Team ID's now being used by Player Model Need to pass correct team ID here for use
-                var teamID = (from teams in db.Teams
-                             where teams.ID == player.Team_ID
-                             select teams).FirstOrDefault().ID;
-                return RedirectToAction("Details", "Teams", new { id = teamID });
+                return RedirectToAction("Details", "Teams", new { id = player.Team_ID });
             }
 
             return View(player);

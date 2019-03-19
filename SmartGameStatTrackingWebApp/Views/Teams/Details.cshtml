@@ -11,6 +11,7 @@
 
 <script type="text/javascript">
     var teamName = @Html.Raw(Json.Encode(Model.ID));
+    var realTeamName = @Html.Raw(Json.Encode(Model.Name));
     $.ajax({
         type: 'POST',
         url: '/Players/GetTeamPlayers2',
@@ -40,7 +41,8 @@
     $(document).ready(function () {
         $(".createPlayer").on('click', function () {
             $(".playerCreatePartial").css("display", "block");
-            $("#team").val(teamName);
+            $("#team").val(realTeamName);
+            $("#Team_ID").val(teamName);
             $("#season").val(2018);
             $(this).hide();
         });

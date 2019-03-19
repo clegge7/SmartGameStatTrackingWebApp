@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -19,6 +20,7 @@ namespace SmartGameStatTrackingWebApp.Models
         [Display(Name ="Date")]
         [Required]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        [Column(TypeName="date")]
         public DateTime gameDate { get; set; }
 
         [Display(Name ="Home Team")]
@@ -34,6 +36,26 @@ namespace SmartGameStatTrackingWebApp.Models
 
         [Display(Name ="Away Points")]
         public int awayPoints { get; set; }
+
+        [Display(Name = "Q1 Start")]
+        [DisplayFormat(DataFormatString = "{HH:mm:ss}")]
+        public DateTime StartGame { get; set; }
+
+        [Display(Name = "Q2 Start")]
+        [DisplayFormat(DataFormatString = "{HH:mm:ss}")]
+        public DateTime StartQ2 { get; set; }
+
+        [Display(Name = "Q3 Start")]
+        [DisplayFormat(DataFormatString = "{HH:mm:ss}")]
+        public DateTime StartQ3 { get; set; }
+
+        [Display(Name = "Q4 Start")]
+        [DisplayFormat(DataFormatString = "{HH:mm:ss}")]
+        public DateTime StartQ4 { get; set; }
+
+        [Display(Name = "Game End")]
+        [DisplayFormat(DataFormatString = "{HH:mm:ss}")]
+        public DateTime GameEnd { get; set; }
 
         //for dropdownlist
         public IEnumerable<SelectListItem> getTeams()

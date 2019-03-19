@@ -281,6 +281,10 @@
     <Compile Include="Migrations\201903052238142_Following.Designer.cs">
       <DependentUpon>201903052238142_Following.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903192157231_Game_Times.cs" />
+    <Compile Include="Migrations\201903192157231_Game_Times.Designer.cs">
+      <DependentUpon>201903192157231_Game_Times.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BoxScore.cs" />
     <Compile Include="Models\Following.cs" />
@@ -472,6 +476,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903052238142_Following.resx">
       <DependentUpon>201903052238142_Following.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903192157231_Game_Times.resx">
+      <DependentUpon>201903192157231_Game_Times.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
