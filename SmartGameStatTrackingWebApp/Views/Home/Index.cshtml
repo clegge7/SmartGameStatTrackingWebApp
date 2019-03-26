@@ -6,34 +6,17 @@
     <div class="col-xs-12 col-md-5">
         <div class="box box-default">
             <div class="box-header">
-                <h3 class="box-title">iCheck - Checkbox &amp; Radio Inputs</h3>
+                <h3 class="box-title">Teams You Follow</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
             </div>
             <div class="box-body">
-                <div class="form-group">
-                    <div>
-                        <input type="checkbox" class="form-control" checked="checked"> Checkbox
-                    </div>
-                    <div>
-                        <input type="checkbox" class="form-control"> Checkbox
-                    </div>
-                    <div>
-                        <input type="checkbox" class="form-control" disabled="disabled"> Disabled Checkbox
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div>
-                        <input type="radio" class="form-control" checked="checked"> Radio Button
-                    </div>
-                    <div>
-                        <input type="radio" class="form-control"> Radio Button
-                    </div>
-                    <div>
-                        <input type="radio" class="form-control" disabled="disabled"> Disabled Radio Button
-                    </div>
-                </div>
+                @{
+                    Html.RenderAction("_PartialIndex", "Games");
+                }
             </div>
         </div>
-    </div>
     <div class="col-xs-12 col-md-7">
         <div class="box box-default">
             <div class="box-header with-border">

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<SmartGameStatTrackingWebApp.Models.Game>
+
+<link rel="stylesheet" type="text/css" href="~/Content/css/table.css" />
+
+<div style="overflow-x:scroll;">
+    <table class="table">
+        <tr class="head">
+
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.gameDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.homeTeam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.awayTeam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.homePoints)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.awayPoints)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.ActionLink("Box Score", "Details", new { id = item.id })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gameDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.homeTeam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.awayTeam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.homePoints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.awayPoints)
+            </td>
+        </tr>
+        }
+
+    </table>
+</div>

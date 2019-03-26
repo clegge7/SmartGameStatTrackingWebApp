@@ -47,6 +47,32 @@
             $(this).hide();
         });
 
+        $.ajax({
+            type: 'POST',
+            url: '/Teams/IsFollowing',
+            datatype: 'json',
+            data: {
+                teamName: teamName
+            },
+            success: function (data) {
+                if (data === 1) {
+                    $("#follow-button").animate({ width: '-=10px' }, 1, function () { });
+
+                    // then now we want the button to expand out to it's full state
+                    // The left translation is to keep the button centred with it's longer width
+                    $("#follow-button").animate({ width: '+=45px', left: '-=15px' }, 1, function () {
+                        $("#follow-button").text("Unfollow");
+
+                        // Animate the background transition from white to green. Using JQuery Color
+                        $("#follow-button").animate({
+                            backgroundColor: "#2EB82E",
+                            borderColor: "#2EB82E"
+                        }, 1);
+                    });
+                }
+            }
+        });
+
         $("#follow-button").click(function () {
             if ($("#follow-button").text() == "+ Follow") {
                 // *** State Change: To Following ***      
@@ -73,7 +99,7 @@
                         teamName: teamName
                     },
                     success: function (data) {
-                        alert(data);
+                        //alert(data);
                     }
                 });
                 
@@ -96,7 +122,7 @@
                         teamName: teamName
                     },
                     success: function (data) {
-                        alert(data);
+                        //alert(data);
                     }
                 });
             }

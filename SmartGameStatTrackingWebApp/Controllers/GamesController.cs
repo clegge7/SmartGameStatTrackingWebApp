@@ -44,6 +44,39 @@ namespace SmartGameStatTrackingWebApp.Controllers
             return View(game);
         }
 
+        [ChildActionOnly]
+        public ActionResult _PartialIndex()
+        {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
+
+            var userName = User.Identity.Name;
+
+            var teamsFollowing = (from teams in db.Following
+                                  where (teams.userName == userName)
+                                  select teams.teamID).ToList();
+
+            List<Game> GamesFollowing = new List<Game>();
+
+            for(int i = 0; i < teamsFollowing.Count; i++)
+            {
+                var tempTeamID = teamsFollowing[i];
+                var tempGame = (from games in db.Games
+                               where ((games.awayTeamID == tempTeamID) || (games.homeTeamID == tempTeamID))
+                               select games).ToList();
+
+                for(int j = 0; j < tempGame.Count; j++)
+                {
+                    GamesFollowing.Add(tempGame[j]);
+                }
+            }
+
+            //return PartialView("_PartialIndex", db.Games.OrderByDescending(game => game.gameDate).ToList());
+            return PartialView("_PartialIndex", GamesFollowing);
+        }
+
         // GET: Games/Create
         public ActionResult Create()
         {

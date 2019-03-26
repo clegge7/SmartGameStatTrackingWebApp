@@ -209,6 +209,8 @@
     <Content Include="Views\Profiles\Details.cshtml" />
     <Content Include="Views\Profiles\Edit.cshtml" />
     <Content Include="Views\Games\AdminIndex.cshtml" />
+    <Content Include="Views\Partials\_FollowingGames.cshtml" />
+    <Content Include="Views\Games\_PartialIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -284,6 +286,14 @@
     <Compile Include="Migrations\201903192157231_Game_Times.cs" />
     <Compile Include="Migrations\201903192157231_Game_Times.Designer.cs">
       <DependentUpon>201903192157231_Game_Times.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903262153428_Game_Create_Fix_Test.cs" />
+    <Compile Include="Migrations\201903262153428_Game_Create_Fix_Test.Designer.cs">
+      <DependentUpon>201903262153428_Game_Create_Fix_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903262157231_Game_Create_Fix_Test_Undo.cs" />
+    <Compile Include="Migrations\201903262157231_Game_Create_Fix_Test_Undo.Designer.cs">
+      <DependentUpon>201903262157231_Game_Create_Fix_Test_Undo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BoxScore.cs" />
@@ -479,6 +489,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903192157231_Game_Times.resx">
       <DependentUpon>201903192157231_Game_Times.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903262153428_Game_Create_Fix_Test.resx">
+      <DependentUpon>201903262153428_Game_Create_Fix_Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903262157231_Game_Create_Fix_Test_Undo.resx">
+      <DependentUpon>201903262157231_Game_Create_Fix_Test_Undo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
