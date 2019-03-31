@@ -92,7 +92,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,gameDate,homeTeam,awayTeam")] Game game)
+        public ActionResult Create([Bind(Include = "id,homeTeamID,awayTeamID,gameDate,homeTeam,awayTeam,homePoints,awayPoints,StartGame,StartQ2,StartQ3,StartQ4,GameEnd")] Game game)
         {
             if (User.Identity.Name == "")
             {
@@ -144,7 +144,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
                 {
                     BoxScore boxscoreaway = new BoxScore();
                     boxscoreaway.gameid = gameID;
-                    boxscoreaway.number = playersHome[i].number;
+                    boxscoreaway.number = playersAway[i].number;
                     boxscoreaway.player = playersAway[i].name;
                     boxscoreaway.playerid = playersAway[i].id;
                     boxscoreaway.teamID = game.awayTeamID;

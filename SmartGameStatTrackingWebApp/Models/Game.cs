@@ -39,23 +39,23 @@ namespace SmartGameStatTrackingWebApp.Models
 
         [Display(Name = "Q1 Start")]
         [DisplayFormat(DataFormatString = "{HH:mm:ss}")]
-        public DateTime StartGame { get; set; }
+        public DateTime? StartGame { get; set; }
 
         [Display(Name = "Q2 Start")]
         [DisplayFormat(DataFormatString = "{HH:mm:ss}")]
-        public DateTime StartQ2 { get; set; }
+        public DateTime? StartQ2 { get; set; }
 
         [Display(Name = "Q3 Start")]
         [DisplayFormat(DataFormatString = "{HH:mm:ss}")]
-        public DateTime StartQ3 { get; set; }
+        public DateTime? StartQ3 { get; set; }
 
         [Display(Name = "Q4 Start")]
         [DisplayFormat(DataFormatString = "{HH:mm:ss}")]
-        public DateTime StartQ4 { get; set; }
+        public DateTime? StartQ4 { get; set; }
 
         [Display(Name = "Game End")]
         [DisplayFormat(DataFormatString = "{HH:mm:ss}")]
-        public DateTime GameEnd { get; set; }
+        public DateTime? GameEnd { get; set; }
 
         //for dropdownlist
         public IEnumerable<SelectListItem> getTeams()
