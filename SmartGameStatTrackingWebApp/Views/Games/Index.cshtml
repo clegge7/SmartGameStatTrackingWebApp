@@ -19,10 +19,10 @@
                 @Html.DisplayNameFor(model => model.gameDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.homeTeam)
+                @Html.DisplayNameFor(model => model.awayTeam)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.awayTeam)
+                @Html.DisplayNameFor(model => model.homeTeam)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.homePoints)
@@ -35,26 +35,26 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.ActionLink("Box Score", "Details", new { id = item.id })
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.gameDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.homeTeam)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.awayTeam)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.homePoints)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.awayPoints)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Box Score", "Details", new { id = item.id })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gameDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.awayTeam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.homeTeam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.homePoints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.awayPoints)
+            </td>
+        </tr>
         }
 
     </table>
