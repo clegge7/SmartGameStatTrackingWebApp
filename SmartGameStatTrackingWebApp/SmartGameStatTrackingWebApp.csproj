@@ -299,7 +299,24 @@
     <Compile Include="Migrations\201903281618088_Create_Game_Fix_2.0.Designer.cs">
       <DependentUpon>201903281618088_Create_Game_Fix_2.0.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904022131166_audio_file_contents_test.cs" />
+    <Compile Include="Migrations\201904022131166_audio_file_contents_test.Designer.cs">
+      <DependentUpon>201904022131166_audio_file_contents_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904022135244_audio_file_contents_test2.cs" />
+    <Compile Include="Migrations\201904022135244_audio_file_contents_test2.Designer.cs">
+      <DependentUpon>201904022135244_audio_file_contents_test2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904022144557_audio_file_contents_test21.cs" />
+    <Compile Include="Migrations\201904022144557_audio_file_contents_test21.Designer.cs">
+      <DependentUpon>201904022144557_audio_file_contents_test21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904070107342_Audio_File_GameID.cs" />
+    <Compile Include="Migrations\201904070107342_Audio_File_GameID.Designer.cs">
+      <DependentUpon>201904070107342_Audio_File_GameID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\audio_file_contents.cs" />
     <Compile Include="Models\BoxScore.cs" />
     <Compile Include="Models\Following.cs" />
     <Compile Include="Models\Game.cs" />
@@ -502,6 +519,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903281618088_Create_Game_Fix_2.0.resx">
       <DependentUpon>201903281618088_Create_Game_Fix_2.0.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904022131166_audio_file_contents_test.resx">
+      <DependentUpon>201904022131166_audio_file_contents_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904022135244_audio_file_contents_test2.resx">
+      <DependentUpon>201904022135244_audio_file_contents_test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904022144557_audio_file_contents_test21.resx">
+      <DependentUpon>201904022144557_audio_file_contents_test21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904070107342_Audio_File_GameID.resx">
+      <DependentUpon>201904070107342_Audio_File_GameID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,14 +1,33 @@
 ﻿@model SmartGameStatTrackingWebApp.Models.Profiles
 
+<script type="text/javascript" src="~/Content/js/plugins/jquery/jquery-3.3.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="~/Content/css/table.css" />
+
+<script type="text/javascript">
+    $.ajax({
+        type: 'POST',
+        url: '/Profiles/GetFlaggedAudio',
+        datatype: 'json',
+        data: { },
+        success: function (data) {
+            for (i = 0; i < data.length; i++) {
+                $('.Queue tr:last').after('<tr><th>' + data[i].file_text + '</th><th><audio controls><source src=\"http://ec2-18-194-88-11.eu-central-1.compute.amazonaws.com:50000/' +
+                    data[i].file_name + '.wav\" type=\"audio/wav\">Your browser does not support the audio element.</audio ></th><th>' + 'Provide Input Here' + '</th></tr>');
+            }
+        }
+    });
+</script>
+
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Account Info";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>Profiles</h4>
-    <hr />
+    <p>
+        @Html.ActionLink("Edit Profile", "Edit", new { id = Model.UserName }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Email)
@@ -20,7 +39,38 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UserName }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div>
+    <h2>Admin Queue</h2>
+    <div style="overflow-x:scroll;">
+        <table class="Queue table table-responsive">
+            <tr class="head">
+                <th>
+                    Transcribed Text
+                </th>
+                <th>
+                    File
+                </th>
+                <th>
+                    Team
+                </th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>
+                    score away steal foul points 3
+                </th>
+                <th>
+                    <audio controls>
+                        <source src="http://ec2-18-194-88-11.eu-central-1.compute.amazonaws.com:50000/2_1554062622.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                </th>
+                <th>
+                    Edit
+                </th>
+                <th></th>
+            </tr>
+        </table>
+    </div>
+</div>
+

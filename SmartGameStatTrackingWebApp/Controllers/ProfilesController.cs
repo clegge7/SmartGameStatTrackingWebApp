@@ -86,6 +86,16 @@ namespace SmartGameStatTrackingWebApp.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public ActionResult GetFlaggedAudio()
+        {
+            var flaggedAudio = from audio in db.audio_File_Contents
+                               where (audio.manual_control == 1)
+                               select audio;
+
+            return Json(flaggedAudio);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
