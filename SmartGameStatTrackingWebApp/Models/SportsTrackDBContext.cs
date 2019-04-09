@@ -31,5 +31,7 @@ namespace SmartGameStatTrackingWebApp.Models
         public System.Data.Entity.DbSet<SmartGameStatTrackingWebApp.Models.Following> Following { get; set; }
 
         public System.Data.Entity.DbSet<SmartGameStatTrackingWebApp.Models.audio_file_contents> audio_File_Contents { get; set; }
+
+        public System.Data.Entity.DbSet<SmartGameStatTrackingWebApp.Models.device_used_in_game> device_used_in_game { get; set; }
     }
 }

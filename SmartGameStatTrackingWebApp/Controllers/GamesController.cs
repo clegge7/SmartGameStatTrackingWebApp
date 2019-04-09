@@ -92,7 +92,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,homeTeamID,awayTeamID,gameDate,homeTeam,awayTeam,homePoints,awayPoints,StartGame,StartQ2,StartQ3,StartQ4,GameEnd")] Game game)
+        public ActionResult Create([Bind(Include = "id,homeTeamID,awayTeamID,gameDate,homeTeam,awayTeam,homePoints,awayPoints,StartGame,StartQ2,StartQ3,StartQ4,GameEnd,DeviceID")] Game game)
         {
             if (User.Identity.Name == "")
             {
@@ -160,6 +160,13 @@ namespace SmartGameStatTrackingWebApp.Controllers
                 }
 
                 db.SaveChanges();
+
+                device_used_in_game device_game_pair = new device_used_in_game();
+                device_game_pair.d_id = game.DeviceID;
+                device_game_pair.g_id = game.id;
+                db.device_used_in_game.Add(device_game_pair);
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
@@ -190,7 +197,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,homeTeamID,awayTeamID,gameDate,homeTeam,awayTeam,homePoints,awayPoints")] Game game)
+        public ActionResult Edit([Bind(Include = "id,homeTeamID,awayTeamID,gameDate,homeTeam,awayTeam,homePoints,awayPoints,StartGame,StartQ2,StartQ3,StartQ4,GameEnd,DeviceID")] Game game)
         {
             if (User.Identity.Name == "")
             {
@@ -242,7 +249,11 @@ namespace SmartGameStatTrackingWebApp.Controllers
             {
                 db.BoxScores.Remove(BoxScores[i]);
             }
-            db.SaveChanges();
+            /*var device_game_pair = (from devices in db.device_used_in_game
+                                    where (devices.g_id == game.id)
+                                    select devices).FirstOrDefault();
+            db.device_used_in_game.Remove(device_game_pair);
+            db.SaveChanges();*/
             return RedirectToAction("Index");
         }
 

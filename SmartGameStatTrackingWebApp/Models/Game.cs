@@ -36,8 +36,8 @@ namespace SmartGameStatTrackingWebApp.Models
 
         [Display(Name ="Away Points")]
         public int awayPoints { get; set; }
-
-        [Display(Name = "Q1 Start")]
+        
+        [Display(Name = "Tip-Off Time")]
         [DisplayFormat(DataFormatString = "{HH:mm:ss}")]
         public DateTime? StartGame { get; set; }
 
@@ -56,6 +56,8 @@ namespace SmartGameStatTrackingWebApp.Models
         [Display(Name = "Game End")]
         [DisplayFormat(DataFormatString = "{HH:mm:ss}")]
         public DateTime? GameEnd { get; set; }
+
+        public int DeviceID { get; set; }
 
         //for dropdownlist
         public IEnumerable<SelectListItem> getTeams()
