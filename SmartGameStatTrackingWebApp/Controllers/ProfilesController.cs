@@ -87,11 +87,22 @@ namespace SmartGameStatTrackingWebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetFlaggedAudio()
+        public ActionResult GetFlaggedAudio(int test)
         {
             var flaggedAudio = from audio in db.audio_File_Contents
-                               where (audio.manual_control == 1)
+                               where (audio.manual_control == true)
                                select audio;
+
+            return Json(flaggedAudio);
+        }
+
+        [HttpPost]
+        public ActionResult ClearFlag(int audio_id)
+        {
+            var flaggedAudio = db.audio_File_Contents.Find(audio_id);
+            flaggedAudio.manual_control = false;
+            db.Entry(flaggedAudio).State = EntityState.Modified;
+            db.SaveChanges();
 
             return Json(flaggedAudio);
         }

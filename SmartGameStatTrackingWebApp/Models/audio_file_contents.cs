@@ -20,6 +20,6 @@ namespace SmartGameStatTrackingWebApp.Models
         [Column(TypeName = "varchar")]
         public string file_name { get; set; }
         
-        public int manual_control { get; set; }
+        public bool manual_control { get; set; }
     }
 }

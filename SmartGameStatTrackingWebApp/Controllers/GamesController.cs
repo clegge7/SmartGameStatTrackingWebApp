@@ -252,8 +252,8 @@ namespace SmartGameStatTrackingWebApp.Controllers
             /*var device_game_pair = (from devices in db.device_used_in_game
                                     where (devices.g_id == game.id)
                                     select devices).FirstOrDefault();
-            db.device_used_in_game.Remove(device_game_pair);
-            db.SaveChanges();*/
+            db.device_used_in_game.Remove(device_game_pair);*/
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
