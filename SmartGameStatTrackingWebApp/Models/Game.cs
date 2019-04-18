@@ -13,8 +13,10 @@ namespace SmartGameStatTrackingWebApp.Models
     {
         public int id { get; set; }
 
+        [Required]
         public int homeTeamID { get; set; }
 
+        [Required]
         public int awayTeamID { get; set; }
 
         [Display(Name ="Date")]
@@ -24,11 +26,9 @@ namespace SmartGameStatTrackingWebApp.Models
         public DateTime gameDate { get; set; }
 
         [Display(Name ="Home Team")]
-        [Required]
         public string homeTeam { get; set; }
 
         [Display(Name ="Away Team")]
-        [Required]
         public string awayTeam { get; set; }
 
         [Display(Name ="Home Points")]

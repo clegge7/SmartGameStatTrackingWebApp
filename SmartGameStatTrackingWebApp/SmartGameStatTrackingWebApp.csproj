@@ -428,6 +428,14 @@
     <Compile Include="Migrations\201904160345541_InttoBit.Designer.cs">
       <DependentUpon>201904160345541_InttoBit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904180041438_Dropdowns_HomeTeam.cs" />
+    <Compile Include="Migrations\201904180041438_Dropdowns_HomeTeam.Designer.cs">
+      <DependentUpon>201904180041438_Dropdowns_HomeTeam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904180053352_Dropdowns_HomeTeam1.cs" />
+    <Compile Include="Migrations\201904180053352_Dropdowns_HomeTeam1.Designer.cs">
+      <DependentUpon>201904180053352_Dropdowns_HomeTeam1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\audio_file_contents.cs" />
     <Compile Include="Models\BoxScore.cs" />
@@ -666,6 +674,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904160345541_InttoBit.resx">
       <DependentUpon>201904160345541_InttoBit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904180041438_Dropdowns_HomeTeam.resx">
+      <DependentUpon>201904180041438_Dropdowns_HomeTeam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904180053352_Dropdowns_HomeTeam1.resx">
+      <DependentUpon>201904180053352_Dropdowns_HomeTeam1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

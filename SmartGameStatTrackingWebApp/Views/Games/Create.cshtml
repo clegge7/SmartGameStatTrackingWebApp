@@ -32,16 +32,16 @@
     <div class="form-group">
         @Html.LabelFor(model => model.homeTeam, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.homeTeam, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.homeTeam, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.homeTeamID, ViewBag.Teams as IEnumerable<SelectListItem>, "--Select Home Team--", new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.homeTeamID, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.awayTeam, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.awayTeam, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.awayTeam, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.awayTeamID, ViewBag.Teams as IEnumerable<SelectListItem>, "--Select Away Team--", new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.awayTeamID, "", new { @class = "text-danger" })
         </div>
     </div>
 

@@ -84,6 +84,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
             {
                 return Redirect("/Login.aspx");
             }
+            ViewBag.Teams = new SelectList(db.Teams.OrderBy(team => team.Name), "ID", "Name");
             return View();
         }
 
@@ -94,18 +95,19 @@ namespace SmartGameStatTrackingWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,homeTeamID,awayTeamID,gameDate,homeTeam,awayTeam,homePoints,awayPoints,StartGame,StartQ2,StartQ3,StartQ4,GameEnd,DeviceID")] Game game)
         {
+            ViewBag.Teams = new SelectList(db.Teams.OrderBy(team => team.Name), "ID", "Name");
             if (User.Identity.Name == "")
             {
                 return Redirect("/Login.aspx");
             }
             if (ModelState.IsValid)
             {
-                game.homeTeamID = (from teams in db.Teams
-                                   where (teams.Name == game.homeTeam)
-                                   select teams.ID).FirstOrDefault();
-                game.awayTeamID = (from teams in db.Teams
-                                   where (teams.Name == game.awayTeam)
-                                   select teams.ID).FirstOrDefault();
+                game.homeTeam = (from teams in db.Teams
+                                   where (teams.ID == game.homeTeamID)
+                                   select teams.Name).FirstOrDefault();
+                game.awayTeam = (from teams in db.Teams
+                                   where (teams.ID == game.awayTeamID)
+                                   select teams.Name).FirstOrDefault();
                 game.homePoints = 0;
                 game.awayPoints = 0;
                 db.Games.Add(game);
@@ -138,6 +140,9 @@ namespace SmartGameStatTrackingWebApp.Controllers
                     boxscorehome.personalFouls = 0;
                     boxscorehome.technicalFouls = 0;
                     db.BoxScores.Add(boxscorehome);
+
+                    playersHome[i].gamesPlayed += 1;
+                    db.Entry(playersHome[i]).State = EntityState.Modified;
                 }
 
                 for (int i = 0; i < playersAway.Count; i++)
@@ -157,6 +162,9 @@ namespace SmartGameStatTrackingWebApp.Controllers
                     boxscoreaway.personalFouls = 0;
                     boxscoreaway.technicalFouls = 0;
                     db.BoxScores.Add(boxscoreaway);
+
+                    playersAway[i].gamesPlayed += 1;
+                    db.Entry(playersAway[i]).State = EntityState.Modified;
                 }
 
                 db.SaveChanges();
@@ -241,7 +249,13 @@ namespace SmartGameStatTrackingWebApp.Controllers
                 return Redirect("/Login.aspx");
             }
             Game game = db.Games.Find(id);
+            var device_game_pair = (from devices in db.device_used_in_game
+                                    where (devices.g_id == game.id)
+                                    select devices).FirstOrDefault();
+            db.device_used_in_game.Remove(device_game_pair);
+            db.SaveChanges();
             db.Games.Remove(game);
+            db.SaveChanges();
             var BoxScores = (from boxscores in db.BoxScores
                              where (boxscores.gameid == game.id)
                              select boxscores).ToList();
@@ -249,11 +263,8 @@ namespace SmartGameStatTrackingWebApp.Controllers
             {
                 db.BoxScores.Remove(BoxScores[i]);
             }
-            /*var device_game_pair = (from devices in db.device_used_in_game
-                                    where (devices.g_id == game.id)
-                                    select devices).FirstOrDefault();
-            db.device_used_in_game.Remove(device_game_pair);*/
             db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
