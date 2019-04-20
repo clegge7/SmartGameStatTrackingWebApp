@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using SmartGameStatTrackingWebApp.Models;
@@ -15,13 +16,21 @@ namespace SmartGameStatTrackingWebApp.Controllers
         private SportsTrackDBContext db = new SportsTrackDBContext();
 
         // GET: Teams
-        public ActionResult Index()
+        public async Task<ActionResult> Index(string search)
         {
             if (User.Identity.Name == "")
             {
                 return Redirect("/Login.aspx");
             }
-            return View(db.Teams.OrderBy(teams => teams.Name).ToList());
+
+            var teamsQuery = from teams in db.Teams select teams;
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                teamsQuery = teamsQuery.Where(s => s.Name.Contains(search));
+            }
+
+            return View(await teamsQuery.OrderBy(teams => teams.Name).ToListAsync());
         }
 
         // GET: Teams/Details/5

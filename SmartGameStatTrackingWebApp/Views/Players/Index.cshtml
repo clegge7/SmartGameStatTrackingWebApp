@@ -22,8 +22,8 @@
             var i;
             for (i = 0; i < data.length; i++) {
                 if (data[i].gamesPlayed != 0) {
-                    $('.Players tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].id + '\">' + data[i].name + '</a></th>' +
-                        '<th>' + data[i].team + '</th>' + '<th>' + data[i].gamesPlayed + '</th>' +
+                    $('.Players tr:last').after('<tr><th>' + data[i].number + '<th>' + data[i].name + '</a></th>' +
+                        '<th><a href=\"/Teams/Details/' + data[i].Team_ID + '\">' + data[i].team + '</a></th>' + '<th>' + data[i].gamesPlayed + '</th>' +
                         '<th>' + (data[i].points / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].rebounds / data[i].gamesPlayed).toFixed(1) + '</th>' +
                         '<th>' + (data[i].assists / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].blocks / data[i].gamesPlayed).toFixed(1) + '</th>' +
                         '<th>' + (data[i].steals / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].turnovers / data[i].gamesPlayed).toFixed(1) + '</th>' +
@@ -31,25 +31,23 @@
                         '</th><th>' + data[i].season + '</th></tr>');
                 }
                 else {
-                    $('.Players tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].id + '\">' + data[i].name + '</a></th>' +
-                        '<th>' + data[i].team + '</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>' + data[i].season + '</th></tr>');
+                    $('.Players tr:last').after('<tr><th>' + data[i].number + '</th><th>' + data[i].name + '</th>' +
+                        '<th><a href=\"/Teams/Details/' + data[i].Team_ID + '\">' + data[i].team + '</a></th>' +
+                        '<th>0</th> <th>0</th> <th>0</th> <th>0</th> <th>0</th> <th>0</th> <th>0</th> <th>0</th> <th>0</th> <th>' + data[i].season + '</th></tr > ');
                 }
             }
         }
     });
 
     $(document).ready(function () {
-        $(".searchButton").on('click', function (e) {
-            var query = $(".light-table-filter").val();
-            var category = $(".searchDropdown").val();
+        $("#SearchButton").on('click', function (e) {
+            var SearchString = $("#SearchBox").val();
             alert("This works");
             $.ajax({
                 type: 'POST',
-                url: '/Players/PlayerSearch',
-                dataType: 'json',
+                url: '/Players/Search',
                 data: {
-                    query: query,
-                    category: category
+                    SearchString: SearchString,
                 },
                 success: function (data) {
                     alert("nope");
@@ -60,19 +58,12 @@
     });
 </script>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-<!--<div class="filter" style="padding-bottom:10px;">
-    <input type="search" class="light-table-filter" data-table="order-table" placeholder="Search">
-    <select class="searchDropdown">
-        <option></option>
-        <option>Players</option>
-        <option>Teams</option>
-    </select>
-    <button type="button" class="searchButton">Search</button>
-</div>-->
+<form asp-controller="Players" asp-action="Index">
+    <p>
+        <input type="text" name="search">
+        <input type="submit" value="Filter" />
+    </p>
+</form>
 
 <div style="overflow-x:scroll;">
     <table class="Players table order-table sortable">

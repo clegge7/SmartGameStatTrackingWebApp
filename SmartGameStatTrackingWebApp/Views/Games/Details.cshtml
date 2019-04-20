@@ -17,7 +17,7 @@
         success: function (data) {
             console.log(data);
             for (i = 0; i < data.length; i++) {
-                    $('.BoxScoreHome tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].playerid + '\">' + data[i].player + '</a></th>' +
+                    $('.BoxScoreHome tr:last').after('<tr><th>' + data[i].number + '<th>' + data[i].player + '</a></th>' +
                         '<th>' + data[i].points + '</th><th>' + data[i].rebounds + '</th><th>' + data[i].assists + '</th><th>' + data[i].blocks + '</th><th>' + data[i].steals
                         + '</th><th>' + data[i].turnovers + '</th>' + '<th>' + data[i].personalFouls + '</th><th>' + data[i].technicalFouls + '</th><th><a href="/BoxScores/Edit/' +
                         data[i].id + '" class="btn btn-primary-active">Edit</a></th>');
@@ -36,7 +36,7 @@
         },
         success: function (data) {
             for (i = 0; i < data.length; i++) {
-                    $('.BoxScoreAway tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].playerid + '\">' + data[i].player + '</a></th>' +
+                    $('.BoxScoreAway tr:last').after('<tr><th>' + data[i].number + '<th>' + data[i].player + '</a></th>' +
                         '<th>' + data[i].points + '</th><th>' + data[i].rebounds + '</th><th>' + data[i].assists + '</th><th>' + data[i].blocks + '</th><th>' + data[i].steals
                         + '</th><th>' + data[i].turnovers + '</th>' + '<th>' + data[i].personalFouls + '</th><th>' + data[i].technicalFouls + '</th><th><a href="/BoxScores/Edit/' +
                         data[i].id + '" class="btn btn-primary-active">Edit</a></th>');

@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using SmartGameStatTrackingWebApp.Models;
@@ -15,32 +16,21 @@ namespace SmartGameStatTrackingWebApp.Controllers
         private SportsTrackDBContext db = new SportsTrackDBContext();
 
         // GET: Players
-        public ActionResult Index()
+        public async Task<ActionResult> Index(string search)
         {
             if (User.Identity.Name == "")
             {
                 return Redirect("/Login.aspx");
             }
-            return View(db.Players.OrderBy(players => players.name).ToList());
-        }
 
-        // GET: Players/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (User.Identity.Name == "")
+            var playersQuery = from player in db.Players select player;
+
+            if (!String.IsNullOrEmpty(search))
             {
-                return Redirect("/Login.aspx");
+                playersQuery = playersQuery.Where(s => s.name.Contains(search));
             }
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Player player = db.Players.Find(id);
-            if (player == null)
-            {
-                return HttpNotFound();
-            }
-            return View(player);
+
+            return View(await playersQuery.OrderBy(players => players.name).ToListAsync());
         }
 
         // GET: Players/Create
@@ -171,41 +161,24 @@ namespace SmartGameStatTrackingWebApp.Controllers
         [HttpPost]
         public ActionResult GetPlayers(IEnumerable<SmartGameStatTrackingWebApp.Models.Player> playerModel)
         {
-            var playerList = from players in playerModel
-                             select players;
+            try
+            {
+                var playerList = from players in playerModel
+                                 select players;
+
+                return Json(playerList);
+            }
+            catch
+            {
+                return Json((from player in db.Players select player).OrderBy(player => player.name).ToList());
+            }
             
-            return Json(playerList);
         }
 
-        //Need to get working
         [HttpPost]
-        public ActionResult PlayerSearch(string query, string category)
+        public ActionResult Search(string SearchString)
         {
-            return Json("0");
-            if(category == "Players")
-            {
-                var playerList = (from players in db.Players
-                                 where players.name.ToLower() == query.ToLower()
-                                 select players).AsEnumerable();
-
-                return RedirectToAction("Index", "Players", playerList);
-            }
-            else if(category == "Teams")
-            {
-                var playerList = (from players in db.Players
-                                 where players.team == query
-                                 select players).AsEnumerable();
-
-                return RedirectToAction("Index", "Players", playerList);
-            }
-            else
-            {
-                var playerList = (from players in db.Players
-                                 where ((players.name == query) || (players.team==query))
-                                 select players).AsEnumerable();
-
-                return RedirectToAction("Index", "Players", playerList);
-            }
+            return View("~/Views/Players/Index.cshtml", db.Players.Where(players => players.name.Contains(SearchString)).ToList());
         }
 
         protected override void Dispose(bool disposing)

@@ -22,7 +22,7 @@
         success: function (data) {
             for (i = 0; i < data.length; i++) {
                 if (data[i].gamesPlayed != 0) {
-                    $('.TeamPlayers tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].id + '\">' + data[i].name + '</a></th>' +
+                    $('.TeamPlayers tr:last').after('<tr><th>' + data[i].number + '<th>' + data[i].name + '</a></th>' +
                         '<th>' + data[i].team + '</th>' + '<th>' + data[i].gamesPlayed + '</th>' +
                         '<th>' + (data[i].points / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].rebounds / data[i].gamesPlayed).toFixed(1) + '</th>' +
                         '<th>' + (data[i].assists / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].blocks / data[i].gamesPlayed).toFixed(1) + '</th>' +
@@ -31,7 +31,7 @@
                         '</th><th>' + data[i].season + '</th></tr>');
                 }
                 else {
-                    $('.TeamPlayers tr:last').after('<tr><th>' + data[i].number + '<th><a href=\"/Players/Details/' + data[i].id + '\">' + data[i].name + '</a></th>' +
+                    $('.TeamPlayers tr:last').after('<tr><th>' + data[i].number + '<th>' + data[i].name + '</a></th>' +
                         '<th>' + data[i].team + '</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>' + data[i].season + '</th></tr>');
                 }
             }
