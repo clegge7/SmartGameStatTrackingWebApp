@@ -14,72 +14,16 @@ namespace SmartGameStatTrackingWebApp.Controllers
     {
         private SportsTrackDBContext db = new SportsTrackDBContext();
 
-        // GET: BoxScores
-        public ActionResult Index()
-        {
-            if (User.Identity.Name == "")
-            {
-                return Redirect("/Login.aspx");
-            }
-            return View(db.BoxScores.ToList());
-        }
-
-        // GET: BoxScores/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (User.Identity.Name == "")
-            {
-                return Redirect("/Login.aspx");
-            }
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BoxScore boxScore = db.BoxScores.Find(id);
-            if (boxScore == null)
-            {
-                return HttpNotFound();
-            }
-            return View(boxScore);
-        }
-
-        // GET: BoxScores/Create
-        public ActionResult Create()
-        {
-            if (User.Identity.Name == "")
-            {
-                return Redirect("/Login.aspx");
-            }
-            return View();
-        }
-
-        // POST: BoxScores/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,gameid,number,player,teamID,playerid,points,rebounds,assists,blocks,steals,turnovers,personalFouls,technicalFouls")] BoxScore boxScore)
-        {
-            if (User.Identity.Name == "")
-            {
-                return Redirect("/Login.aspx");
-            }
-            if (ModelState.IsValid)
-            {
-                db.BoxScores.Add(boxScore);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(boxScore);
-        }
-
         // GET: BoxScores/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (User.Identity.Name == "")
+            if(User.Identity.Name == "")
             {
                 return Redirect("/Login.aspx");
+            }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
             }
             if (id == null)
             {
@@ -104,69 +48,18 @@ namespace SmartGameStatTrackingWebApp.Controllers
             {
                 return Redirect("/Login.aspx");
             }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
+            }
+            int gameid = boxScore.gameid;
             if (ModelState.IsValid)
             {
                 db.Entry(boxScore).State = EntityState.Modified;
-                /*//get original box score and compare to new values
-                var oldPlayerID = GetStat(boxScore.id, "player");
-                var oldPoints = GetStat(boxScore.id, "points");
-                var oldRebounds = GetStat(boxScore.id, "rebounds");
-
-                if (oldPoints != boxScore.points)
-                {
-                    //update player and game tables for points
-
-                    //player table
-                    var playdata = db.Players.FirstOrDefault(x => x.id == oldPlayerID);
-                    playdata.points += (boxScore.points - oldPoints);
-
-                    db.Entry(playdata).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
-                if(oldRebounds != boxScore.rebounds)
-                {
-                    //update player and game tables for points
-                }
-
-                //db.Entry(boxScore).State = EntityState.Modified;*/
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Games", new { id = gameid });
             }
-            return View(boxScore);
-        }
-
-        // GET: BoxScores/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (User.Identity.Name == "")
-            {
-                return Redirect("/Login.aspx");
-            }
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BoxScore boxScore = db.BoxScores.Find(id);
-            if (boxScore == null)
-            {
-                return HttpNotFound();
-            }
-            return View(boxScore);
-        }
-
-        // POST: BoxScores/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            if (User.Identity.Name == "")
-            {
-                return Redirect("/Login.aspx");
-            }
-            BoxScore boxScore = db.BoxScores.Find(id);
-            db.BoxScores.Remove(boxScore);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Games", new { id = gameid });
         }
 
         public int GetStat(int ID, string stat)

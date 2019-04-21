@@ -1,0 +1,82 @@
+﻿@model IEnumerable<SmartGameStatTrackingWebApp.Models.Player>
+
+<link rel="stylesheet" type="text/css" href="~/Content/css/table.css" />
+
+<script type="text/javascript">
+    var playerModel = @Html.Raw(Json.Encode(Model.OrderBy(x => x.name)));
+    $.ajax({
+        type: 'POST',
+        url: '/Players/GetPlayers',
+        dataType: 'json',
+        data: {
+            playerModel: playerModel
+        },
+        success: function (data) {
+            var i;
+            for (i = 0; i < data.length; i++) {
+                if (data[i].gamesPlayed != 0) {
+                    $('.Players tr:last').after('<tr><th>' + data[i].number + '<th>' + data[i].name + '</a></th>' +
+                        '<th><a href=\"/Teams/Details/' + data[i].Team_ID + '\">' + data[i].team + '</a></th>' + '<th>' + data[i].gamesPlayed + '</th>' +
+                        '<th>' + (data[i].points / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].rebounds / data[i].gamesPlayed).toFixed(1) + '</th>' +
+                        '<th>' + (data[i].assists / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].blocks / data[i].gamesPlayed).toFixed(1) + '</th>' +
+                        '<th>' + (data[i].steals / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].turnovers / data[i].gamesPlayed).toFixed(1) + '</th>' +
+                        '<th>' + (data[i].personalFouls / data[i].gamesPlayed).toFixed(1) + '</th><th>' + (data[i].technicalFouls / data[i].gamesPlayed).toFixed(1) +
+                        '</th><th>' + data[i].season + '</th></tr>');
+                }
+                else {
+                    $('.Players tr:last').after('<tr><th>' + data[i].number + '</th><th>' + data[i].name + '</th>' +
+                        '<th><a href=\"/Teams/Details/' + data[i].Team_ID + '\">' + data[i].team + '</a></th>' +
+                        '<th>0</th> <th>0</th> <th>0</th> <th>0</th> <th>0</th> <th>0</th> <th>0</th> <th>0</th> <th>0</th> <th>' + data[i].season + '</th></tr > ');
+                }
+            }
+        }
+    });
+</script>
+
+<div style="overflow-x:scroll;">
+    <table class="Players table order-table sortable">
+        <thead>
+            <tr class="head">
+                <th>
+                    @Html.DisplayNameFor(model => model.number)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.team)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.gamesPlayed)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.points)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.rebounds)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.assists)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.blocks)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.steals)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.turnovers)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.personalFouls)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.technicalFouls)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.season)
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>

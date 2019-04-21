@@ -294,17 +294,12 @@
     <Content Include="Views\Games\Edit.cshtml" />
     <Content Include="Views\Games\Index.cshtml" />
     <Content Include="Views\Partials\_PlayerCreate.cshtml" />
-    <Content Include="Views\BoxScores\Create.cshtml" />
-    <Content Include="Views\BoxScores\Delete.cshtml" />
-    <Content Include="Views\BoxScores\Details.cshtml" />
     <Content Include="Views\BoxScores\Edit.cshtml" />
-    <Content Include="Views\BoxScores\Index.cshtml" />
-    <Content Include="Views\Profiles\Delete.cshtml" />
     <Content Include="Views\Profiles\Details.cshtml" />
-    <Content Include="Views\Profiles\Edit.cshtml" />
     <Content Include="Views\Games\AdminIndex.cshtml" />
     <Content Include="Views\Partials\_FollowingGames.cshtml" />
     <Content Include="Views\Games\_PartialIndex.cshtml" />
+    <Content Include="Views\Players\_FollowingPlayers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -444,6 +439,10 @@
     <Compile Include="Migrations\201904180053352_Dropdowns_HomeTeam1.cs" />
     <Compile Include="Migrations\201904180053352_Dropdowns_HomeTeam1.Designer.cs">
       <DependentUpon>201904180053352_Dropdowns_HomeTeam1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904212008358_NegativeNumFix.cs" />
+    <Compile Include="Migrations\201904212008358_NegativeNumFix.Designer.cs">
+      <DependentUpon>201904212008358_NegativeNumFix.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\audio_file_contents.cs" />
@@ -689,6 +688,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904180053352_Dropdowns_HomeTeam1.resx">
       <DependentUpon>201904180053352_Dropdowns_HomeTeam1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904212008358_NegativeNumFix.resx">
+      <DependentUpon>201904212008358_NegativeNumFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

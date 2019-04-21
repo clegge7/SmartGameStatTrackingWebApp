@@ -4,7 +4,7 @@
     ViewBag.Title = Model.Name;
 }
 
-<button id="follow-button">+ Follow</button>	
+<button id="follow-button">+ Follow</button>
 <script type="text/javascript" src="~/Content/js/plugins/jquery/jquery-3.3.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <link rel="stylesheet" type="text/css" href="~/Content/css/table.css" />
@@ -75,8 +75,8 @@
 
         $("#follow-button").click(function () {
             if ($("#follow-button").text() == "+ Follow") {
-                // *** State Change: To Following ***      
-                // We want the button to squish (or shrink) by 10px as a reaction to the click and for it to last 100ms    
+                // *** State Change: To Following ***
+                // We want the button to squish (or shrink) by 10px as a reaction to the click and for it to last 100ms
                 $("#follow-button").animate({ width: '-=10px' }, 100, function () { });
 
                 // then now we want the button to expand out to it's full state
@@ -102,10 +102,10 @@
                         //alert(data);
                     }
                 });
-                
+
             } else {
 
-                // *** State Change: Unfollow ***     
+                // *** State Change: Unfollow ***
                 // Change the button back to it's original state
                 $("#follow-button").animate({ width: '-=25px', left: '+=15px' }, 300, function () {
                     $("#follow-button").text("+ Follow");
@@ -151,7 +151,7 @@
     <dl class="dl-horizontal">
 
         <dt>
-            @Html.DisplayNameFor(model => model.wins)
+            Wins
         </dt>
 
         <dd>
@@ -159,7 +159,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.losses)
+            Losses
         </dt>
 
         <dd>
@@ -167,17 +167,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.season)
+            Season
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.season)
         </dd>
-
-        <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-            @Html.ActionLink("Back to List", "Index")
-        </p>
+        @if (User.Identity.Name == "colin")
+        {
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        }
 
     </dl>
 </div>
@@ -227,10 +229,14 @@
     </table>
 </div>
 
-<button type="button" class="createPlayer">Add Player</button>
+@if (User.Identity.Name == "colin")
+{
+    <button type="button" class="createPlayer">Add Player</button>
 
-<div class="playerCreatePartial" style="display:none;">
-    @{
-        @Html.Partial("~/Views/Partials/_PlayerCreate.cshtml", new SmartGameStatTrackingWebApp.Models.Player());
-    }
-</div>
+    <div class="playerCreatePartial" style="display:none;">
+        @{
+            @Html.Partial("~/Views/Partials/_PlayerCreate.cshtml", new SmartGameStatTrackingWebApp.Models.Player());
+        }
+    </div>
+
+}

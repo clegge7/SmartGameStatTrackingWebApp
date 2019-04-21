@@ -84,6 +84,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
             {
                 return Redirect("/Login.aspx");
             }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
+            }
             ViewBag.Teams = new SelectList(db.Teams.OrderBy(team => team.Name), "ID", "Name");
             return View();
         }
@@ -99,6 +103,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
             if (User.Identity.Name == "")
             {
                 return Redirect("/Login.aspx");
+            }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
             }
             if (ModelState.IsValid)
             {
@@ -184,9 +192,13 @@ namespace SmartGameStatTrackingWebApp.Controllers
         // GET: Games/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (User.Identity.Name == "")
+            if(User.Identity.Name == "")
             {
                 return Redirect("/Login.aspx");
+            }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
             }
             if (id == null)
             {
@@ -211,6 +223,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
             {
                 return Redirect("/Login.aspx");
             }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(game).State = EntityState.Modified;
@@ -226,6 +242,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
             if (User.Identity.Name == "")
             {
                 return Redirect("/Login.aspx");
+            }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
             }
             if (id == null)
             {
@@ -247,6 +267,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
             if (User.Identity.Name == "")
             {
                 return Redirect("/Login.aspx");
+            }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
             }
             Game game = db.Games.Find(id);
             var device_game_pair = (from devices in db.device_used_in_game

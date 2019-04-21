@@ -1,16 +1,18 @@
 ﻿@model IEnumerable<SmartGameStatTrackingWebApp.Models.Game>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Games";
 }
 
 <link rel="stylesheet" type="text/css" href="~/Content/css/table.css" />
 
-<h2>Index</h2>
+@if (User.Identity.Name == "colin")
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <div style="overflow-x:scroll;">
     <table class="table">
         <tr class="head">
@@ -30,7 +32,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.homePoints)
             </th>
-            <th></th>
+            @if (User.Identity.Name == "colin")
+            {
+                <th></th>
+            }
         </tr>
 
         @foreach (var item in Model)
@@ -54,6 +59,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.homePoints)
             </td>
+            @if (User.Identity.Name == "colin")
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            }
         </tr>
         }
 

@@ -3,7 +3,21 @@
 <script type="text/javascript" src="~/Content/js/plugins/jquery/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="~/Content/css/table.css" />
 
-<script type="text/javascript">
+@{
+    ViewBag.Title = Model.awayTeam + " @ " + Model.homeTeam;
+}
+
+<p>
+    @if (User.Identity.Name == "colin")
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id })
+    }
+    @Html.ActionLink("Back to Games", "Index")
+</p>
+
+@if (User.Identity.Name == "colin")
+{
+    <script type="text/javascript">
     var homeTeamName = @Html.Raw(Json.Encode(Model.homeTeamID));
     var gameID = @Html.Raw(Json.Encode(Model.id));
     $.ajax({
@@ -43,7 +57,51 @@
             }
         }
     });
-</script>
+    </script>
+}
+else
+{
+    <script type="text/javascript">
+    var homeTeamName = @Html.Raw(Json.Encode(Model.homeTeamID));
+    var gameID = @Html.Raw(Json.Encode(Model.id));
+    $.ajax({
+        type: 'POST',
+        url: '/Players/GetTeamPlayers',
+        datatype: 'json',
+        data: {
+            teamID: homeTeamName,
+            gameID: gameID
+        },
+        success: function (data) {
+            console.log(data);
+            for (i = 0; i < data.length; i++) {
+                    $('.BoxScoreHome tr:last').after('<tr><th>' + data[i].number + '<th>' + data[i].player + '</a></th>' +
+                        '<th>' + data[i].points + '</th><th>' + data[i].rebounds + '</th><th>' + data[i].assists + '</th><th>' + data[i].blocks + '</th><th>' + data[i].steals
+                        + '</th><th>' + data[i].turnovers + '</th>' + '<th>' + data[i].personalFouls + '</th><th>' + data[i].technicalFouls + '</th>');
+            }
+        }
+    });
+
+    var awayTeamName = @Html.Raw(Json.Encode(Model.awayTeamID));
+    $.ajax({
+        type: 'POST',
+        url: '/Players/GetTeamPlayers',
+        datatype: 'json',
+        data: {
+            teamID: awayTeamName,
+            gameID: gameID
+        },
+        success: function (data) {
+            for (i = 0; i < data.length; i++) {
+                    $('.BoxScoreAway tr:last').after('<tr><th>' + data[i].number + '<th>' + data[i].player + '</a></th>' +
+                        '<th>' + data[i].points + '</th><th>' + data[i].rebounds + '</th><th>' + data[i].assists + '</th><th>' + data[i].blocks + '</th><th>' + data[i].steals
+                        + '</th><th>' + data[i].turnovers + '</th>' + '<th>' + data[i].personalFouls + '</th><th>' + data[i].technicalFouls + '</th>');
+            }
+        }
+    });
+    </script>
+}
+
 
 <div class="jumbotron" style="border:solid;width:100%;border-radius:25px;border-color:darkslategray;background-color:white;">
     <div class="gameDate" style="text-align:center; font-size:24px;">
@@ -69,7 +127,7 @@
         </div>
     </div>
 </div>
-<div >
+<div>
     <div class="row">
         <div class="col-md-4">
             <h6 style="font-size:32px;">
@@ -108,7 +166,10 @@
                         <th>
                             TFs
                         </th>
-                        <th></th>
+                        @if (User.Identity.Name == "colin")
+                        {
+                            <th></th>
+                        }
                     </tr>
                 </table>
             </div>
@@ -150,15 +211,13 @@
                         <th>
                             TFs
                         </th>
-                        <th></th>
+                        @if (User.Identity.Name == "colin")
+                        {
+                            <th></th>
+                        }
                     </tr>
                 </table>
             </div>
         </div>
     </div>
 </div>
-
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

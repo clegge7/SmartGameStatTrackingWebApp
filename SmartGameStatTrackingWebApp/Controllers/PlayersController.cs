@@ -33,12 +33,50 @@ namespace SmartGameStatTrackingWebApp.Controllers
             return View(await playersQuery.OrderBy(players => players.name).ToListAsync());
         }
 
+        [ChildActionOnly]
+        public ActionResult _PartialIndex()
+        {
+            if (User.Identity.Name == "")
+            {
+                return Redirect("/Login.aspx");
+            }
+
+            var userName = User.Identity.Name;
+
+            var teamsFollowing = (from teams in db.Following
+                                  where (teams.userName == userName)
+                                  select teams.teamID).ToList();
+
+            List<int> teamsFollowingIDs = new List<int>();
+            List<Player> followingPlayers = new List<Player>();
+
+            for (int i = 0; i < teamsFollowing.Count; i++)
+            {
+                var tempTeamID = teamsFollowing[i];
+                var playersOnTeam = (from players in db.Players
+                                    where (players.Team_ID == tempTeamID)
+                                    select players).ToList();
+
+                for (int j = 0; j < playersOnTeam.Count; j++)
+                {
+                    followingPlayers.Add(playersOnTeam[j]);
+                }
+            }
+
+            //return PartialView("_PartialIndex", db.Games.OrderByDescending(game => game.gameDate).ToList());
+            return PartialView("_FollowingPlayers", followingPlayers);
+        }
+
         // GET: Players/Create
         public ActionResult Create()
         {
             if (User.Identity.Name == "")
             {
                 return Redirect("/Login.aspx");
+            }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
             }
             return View();
         }
@@ -53,6 +91,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
             if (User.Identity.Name == "")
             {
                 return Redirect("/Login.aspx");
+            }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
             }
             if (ModelState.IsValid)
             {
@@ -71,6 +113,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
             if (User.Identity.Name == "")
             {
                 return Redirect("/Login.aspx");
+            }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
             }
             if (id == null)
             {
@@ -95,6 +141,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
             {
                 return Redirect("/Login.aspx");
             }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(player).State = EntityState.Modified;
@@ -110,6 +160,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
             if (User.Identity.Name == "")
             {
                 return Redirect("/Login.aspx");
+            }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
             }
             if (id == null)
             {
@@ -128,9 +182,13 @@ namespace SmartGameStatTrackingWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if(User.Identity.Name == "")
+            if (User.Identity.Name == "")
             {
                 return Redirect("/Login.aspx");
+            }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
             }
             Player player = db.Players.Find(id);
             db.Players.Remove(player);

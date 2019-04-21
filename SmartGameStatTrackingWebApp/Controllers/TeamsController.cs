@@ -59,6 +59,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
             {
                 return Redirect("/Login.aspx");
             }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
+            }
             return View();
         }
 
@@ -72,6 +76,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
             if (User.Identity.Name == "")
             {
                 return Redirect("/Login.aspx");
+            }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
             }
             if (ModelState.IsValid)
             {
@@ -89,6 +97,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
             if (User.Identity.Name == "")
             {
                 return Redirect("/Login.aspx");
+            }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
             }
             if (id == null)
             {
@@ -113,6 +125,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
             {
                 return Redirect("/Login.aspx");
             }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(team).State = EntityState.Modified;
@@ -128,6 +144,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
             if (User.Identity.Name == "")
             {
                 return Redirect("/Login.aspx");
+            }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
             }
             if (id == null)
             {
@@ -149,6 +169,10 @@ namespace SmartGameStatTrackingWebApp.Controllers
             if (User.Identity.Name == "")
             {
                 return Redirect("/Login.aspx");
+            }
+            else if (User.Identity.Name != "colin")
+            {
+                return Redirect("/Home/Index");
             }
             Team team = db.Teams.Find(id);
             db.Teams.Remove(team);

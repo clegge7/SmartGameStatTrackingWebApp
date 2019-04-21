@@ -12,6 +12,7 @@ namespace SmartGameStatTrackingWebApp.Models
         public int id { get; set; }
 
         [Display(Name = "#")]
+        [Range(0, 99)]
         public int number { get; set; }
 
         [Display(Name = "Player")]

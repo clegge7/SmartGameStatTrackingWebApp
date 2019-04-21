@@ -1,12 +1,17 @@
 ﻿@model IEnumerable<SmartGameStatTrackingWebApp.Models.Team>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Teams";
 }
 
 <link rel="stylesheet" type="text/css" href="~/Content/css/table.css" />
 
-<h2>Index</h2>
+@if (User.Identity.Name == "colin")
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
 
 <form asp-controller="Teams" asp-action="Index">
     <p>
@@ -15,9 +20,6 @@
     </p>
 </form>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr class="head">
         <th>
@@ -32,10 +34,14 @@
         <th>
             @Html.DisplayNameFor(model => model.season)
         </th>
-        <th></th>
+        @if (User.Identity.Name == "colin")
+        {
+            <th></th>
+        }
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
     <tr>
         <td>
             @Html.ActionLink(item.Name, "Details", new { id = item.ID })
@@ -49,11 +55,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.season)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
+        @if (User.Identity.Name == "colin")
+        {
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        }
     </tr>
-}
+    }
 
 </table>
