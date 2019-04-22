@@ -59,7 +59,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
             {
                 return Redirect("/Login.aspx");
             }
-            else if (User.Identity.Name != "colin" || User.Identity.Name != "stephan")
+            else if (User.Identity.Name != "colin" && User.Identity.Name != "stephan")
             {
                 return Redirect("/Home/Index");
             }
@@ -77,7 +77,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
             {
                 return Redirect("/Login.aspx");
             }
-            else if (User.Identity.Name != "colin" || User.Identity.Name != "stephan")
+            else if (User.Identity.Name != "colin" && User.Identity.Name != "stephan")
             {
                 return Redirect("/Home/Index");
             }
@@ -98,7 +98,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
             {
                 return Redirect("/Login.aspx");
             }
-            else if (User.Identity.Name != "colin" || User.Identity.Name != "stephan")
+            else if (User.Identity.Name != "colin" && User.Identity.Name != "stephan")
             {
                 return Redirect("/Home/Index");
             }
@@ -125,7 +125,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
             {
                 return Redirect("/Login.aspx");
             }
-            else if (User.Identity.Name != "colin" || User.Identity.Name != "stephan")
+            else if (User.Identity.Name != "colin" && User.Identity.Name != "stephan")
             {
                 return Redirect("/Home/Index");
             }
@@ -145,7 +145,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
             {
                 return Redirect("/Login.aspx");
             }
-            else if (User.Identity.Name != "colin" || User.Identity.Name != "stephan")
+            else if (User.Identity.Name != "colin" && User.Identity.Name != "stephan")
             {
                 return Redirect("/Home/Index");
             }
@@ -170,7 +170,7 @@ namespace SmartGameStatTrackingWebApp.Controllers
             {
                 return Redirect("/Login.aspx");
             }
-            else if (User.Identity.Name != "colin" || User.Identity.Name != "stephan")
+            else if (User.Identity.Name != "colin" && User.Identity.Name != "stephan")
             {
                 return Redirect("/Home/Index");
             }
