@@ -84,11 +84,16 @@
         },
         success: function (data) {
             for (i = 0; i < data.length; i++) {
-                $('.Queue tr:last').after('<tr><th>' + data[i].file_text + '</th><th><audio controls><source src=\"http://ec2-18-194-88-11.eu-central-1.compute.amazonaws.com:50000/' +
-                    data[i].file_name + '.wav\" type=\"audio/wav\">Your browser does not support the audio element.</audio ></th><th><a href=\"/Games/Details/' + data[i].g_id +
-                    '\">Edit Box Score</a>' + '</th ><th>' +
-                    '<button onclick=\"ClearFlag(' + data[i].a_f_id + ')\" type=\"button\" class=\"clear_flag\">Clear Flag</button>' +
-                    '</th ></tr > ');
+                try {
+                    $('.Queue tr:last').after('<tr><th>' + data[i].file_text + '</th><th><audio controls><source src=\"http://ec2-18-194-88-11.eu-central-1.compute.amazonaws.com:50000/' +
+                        data[i].file_name + '.wav\" type=\"audio/wav\">Your browser does not support the audio element.</audio ></th><th><a href=\"/Games/Details/' + data[i].g_id +
+                        '\">Edit Box Score</a>' + '</th ><th>' +
+                        '<button onclick=\"ClearFlag(' + data[i].a_f_id + ')\" type=\"button\" class=\"clear_flag\">Clear Flag</button>' +
+                        '</th ></tr > ');
+                }
+                catch (e) {
+                    console.log("error: " + e);
+                }
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {

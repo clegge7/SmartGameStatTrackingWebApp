@@ -8,14 +8,14 @@
 }
 
 <p>
-    @if (User.Identity.Name != "colin" || User.Identity.Name != "stephan")
+    @if (User.Identity.Name == "colin" || User.Identity.Name == "stephan")
     {
         @Html.ActionLink("Edit", "Edit", new { id = Model.id })
     }
     @Html.ActionLink("Back to Games", "Index")
 </p>
 
-@if (User.Identity.Name != "colin" || User.Identity.Name != "stephan")
+@if (User.Identity.Name == "colin" || User.Identity.Name == "stephan")
 {
     <script type="text/javascript">
     var homeTeamName = @Html.Raw(Json.Encode(Model.homeTeamID));
@@ -166,7 +166,7 @@ else
                         <th>
                             TFs
                         </th>
-                        @if (User.Identity.Name != "colin" || User.Identity.Name != "stephan")
+                        @if (User.Identity.Name == "colin" || User.Identity.Name == "stephan")
                         {
                             <th></th>
                         }
@@ -211,7 +211,7 @@ else
                         <th>
                             TFs
                         </th>
-                        @if (User.Identity.Name != "colin" || User.Identity.Name != "stephan")
+                        @if (User.Identity.Name == "colin" || User.Identity.Name == "stephan")
                         {
                             <th></th>
                         }

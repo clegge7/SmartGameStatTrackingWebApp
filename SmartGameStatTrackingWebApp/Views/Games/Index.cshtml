@@ -6,7 +6,7 @@
 
 <link rel="stylesheet" type="text/css" href="~/Content/css/table.css" />
 
-@if (User.Identity.Name != "colin" || User.Identity.Name != "stephan")
+@if (User.Identity.Name == "colin" || User.Identity.Name == "stephan")
 {
     <p>
         @Html.ActionLink("Create New", "Create")
@@ -32,7 +32,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.homePoints)
             </th>
-            @if (User.Identity.Name != "colin" || User.Identity.Name != "stephan")
+            @if (User.Identity.Name == "colin" || User.Identity.Name == "stephan")
             {
                 <th></th>
             }
@@ -59,7 +59,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.homePoints)
             </td>
-            @if (User.Identity.Name != "colin" || User.Identity.Name != "stephan")
+            @if (User.Identity.Name == "colin" || User.Identity.Name == "stephan")
             {
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
