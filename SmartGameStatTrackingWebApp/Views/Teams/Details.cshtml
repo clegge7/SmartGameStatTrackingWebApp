@@ -173,7 +173,7 @@
         <dd>
             @Html.DisplayFor(model => model.season)
         </dd>
-        @if (User.Identity.Name == "colin" || User.Identity.Name == "stephan")
+        @if (User.Identity.Name == "colin" || User.Identity.Name == "stephan" || User.Identity.Name == "Marius")
         {
             <p>
                 @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
@@ -229,7 +229,7 @@
     </table>
 </div>
 
-@if (User.Identity.Name == "colin" || User.Identity.Name == "stephan")
+@if (User.Identity.Name == "colin" || User.Identity.Name == "stephan" || User.Identity.Name == "Marius")
 {
     <button type="button" class="createPlayer">Add Player</button>
 
