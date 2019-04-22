@@ -444,6 +444,10 @@
     <Compile Include="Migrations\201904212008358_NegativeNumFix.Designer.cs">
       <DependentUpon>201904212008358_NegativeNumFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904220055450_Date_fix.cs" />
+    <Compile Include="Migrations\201904220055450_Date_fix.Designer.cs">
+      <DependentUpon>201904220055450_Date_fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\audio_file_contents.cs" />
     <Compile Include="Models\BoxScore.cs" />
@@ -691,6 +695,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904212008358_NegativeNumFix.resx">
       <DependentUpon>201904212008358_NegativeNumFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904220055450_Date_fix.resx">
+      <DependentUpon>201904220055450_Date_fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

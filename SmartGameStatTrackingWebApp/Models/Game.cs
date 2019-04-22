@@ -39,7 +39,7 @@ namespace SmartGameStatTrackingWebApp.Models
         
         [Display(Name = "Tip-Off Time")]
         [DisplayFormat(DataFormatString = "{HH:mm:ss}")]
-        public DateTime? StartGame { get; set; }
+        public DateTime StartGame { get; set; }
 
         [Display(Name = "Q2 Start")]
         [DisplayFormat(DataFormatString = "{HH:mm:ss}")]

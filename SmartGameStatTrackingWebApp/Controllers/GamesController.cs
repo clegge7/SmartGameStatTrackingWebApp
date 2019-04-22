@@ -118,6 +118,9 @@ namespace SmartGameStatTrackingWebApp.Controllers
                                    select teams.Name).FirstOrDefault();
                 game.homePoints = 0;
                 game.awayPoints = 0;
+                DateTime dateOnly = game.gameDate;
+                DateTime timeonly = game.StartGame;
+                game.StartGame = game.gameDate.Date.Add(game.StartGame.TimeOfDay);
                 db.Games.Add(game);
                 db.SaveChanges();
                 int gameID = (from games in db.Games
@@ -273,6 +276,16 @@ namespace SmartGameStatTrackingWebApp.Controllers
                 return Redirect("/Home/Index");
             }
             Game game = db.Games.Find(id);
+
+            var audio_file = (from audio in db.audio_File_Contents
+                              where audio.g_id == game.id
+                              select audio).ToList();
+            for(int i =0; i<audio_file.Count; i++)
+            {
+                db.audio_File_Contents.Remove(audio_file[i]);
+            }
+            db.SaveChanges();
+
             var device_game_pair = (from devices in db.device_used_in_game
                                     where (devices.g_id == game.id)
                                     select devices).FirstOrDefault();
